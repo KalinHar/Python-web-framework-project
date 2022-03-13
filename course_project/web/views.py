@@ -61,7 +61,7 @@ class LoginFormView(LoginView):
 #                 return redirect('home')
 #         message = 'Login failed!'
 #         return render(request, self.template_name, context={'form': form, 'message': message})
-# Todo: Permissions and authentications, modal for delete announce,
+# Todo: Permissions and authentications, modal for delete announce, master el_meter in reporting,
 # todo: homePage, , ref. FBV to CBV, expand img on announce...
 
 class RegisterFormView(views.CreateView):
@@ -324,9 +324,14 @@ def reporting_view(request):
         return redirect('403')
     object_list = Client.objects.all()
     taxes = Taxes.objects.all()[0]
+    # all_clients = object_list.count()
+    # all_reported = [o for o in object_list if not o.reported]
     context = {
-        'object_list': object_list
+        'object_list': object_list,
     }
+
+    def report_master():  # todo: implement master in separated view
+        pass
 
     def add_client_to_olddebts(client):
         new_debt = OldDebts()
@@ -349,6 +354,10 @@ def reporting_view(request):
             client.reported = True
             client.paid = False
             client.save()
+
+            if Client.objects.filter(reported=False).count() == 0:
+                context['all_reported'] = 'yes'
+                report_master()
 
     if request.method == 'GET':
         client_units = request.GET.get('units', None)

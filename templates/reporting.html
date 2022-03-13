@@ -5,13 +5,15 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="h-100 bg-light rounded p-4">
-
+                    {% csrf_token %}
+{#                    {% if all_reported %}#}
                     <div class="row d-flex align-items-center justify-content-between mb-4">
                         <h6 class="col mb-0 text-warning">Warning: Before start reporting, add to archive current data!</h6>
                         <a href="{% url 'add archive' %}" class="col btn btn-sm btn-outline-warning">Add to Archive</a>
                     </div>
+                    <span>{{ all_reported }}</span>
                     <!-- list of clients -->
-                    {% csrf_token %}
+{#                    {% else %}#}
                     {% for cl in object_list %}
                         <div class="d-flex border-bottom py-2">
                             <div class="w-100 ms-3">
@@ -37,6 +39,7 @@
                             </div>
                         </div>
                     {% endfor %}
+{#                    {% endif %}#}
 
                 </div>
             </div>
