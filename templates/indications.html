@@ -23,7 +23,7 @@
                         <!-- List of clients -->
                         {% for cl in object_list %}
                             {% is_client cl.username.pk request.user.pk as client %}
-                            <tr class="{% row_color cl.payed %}">
+                            <tr class="{% row_color cl.paid %}">
                                 <th class="text-center" scope="row">{{ cl.pk }}</th>
                                 <td>{{ cl.names }}</td>
                                 <td class="text-end">{{ cl.old }}</td>

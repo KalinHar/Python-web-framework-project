@@ -33,8 +33,8 @@
                                     <span class="col-12 col-md-1 text-end">{{ client_sum }}</span>
 
                                     <span class="col-12 col-md-1 text-center">
-                                        {% if cl.payed %}
-                                            Payed
+                                        {% if cl.paid %}
+                                            Paid
                                         {% else %}
                                             <a href="{% url 'pay to' cl.pk %}" class="btn btn-sm btn-primary">Pay</a>
                                         {% endif %}

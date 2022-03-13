@@ -60,7 +60,7 @@ class Client(models.Model):
         on_delete=models.CASCADE,
     )
 
-    payed = models.BooleanField(
+    paid = models.BooleanField(
         default=False,
     )
 

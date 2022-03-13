@@ -258,7 +258,7 @@ class PaymentsView(PermissionRequiredMixin, views.ListView):
         taxes = Taxes.objects.all()[0]
         clients = self.model.objects.all()
 
-        debit = sum(map(lambda cl_p: cl_p.difference * taxes.price + taxes.tax, filter(lambda cl: cl.payed, clients)))
+        debit = sum(map(lambda cl_p: cl_p.difference * taxes.price + taxes.tax, filter(lambda cl: cl.paid, clients)))
         total = sum(map(lambda cl: cl.difference * taxes.price + taxes.tax, clients))
 
         context['price'] = taxes.price
@@ -273,7 +273,7 @@ def pay_to(request, pk):
     if not request.user.has_perm('web.change_taxes',):
         return redirect('403')
     client = Client.objects.get(pk=pk)
-    client.payed = True
+    client.paid = True
     client.save()
     messages.warning(request, "Payment successful.")
     return redirect('payments')
@@ -341,13 +341,13 @@ def reporting_view(request):
             if not client_units.isdecimal() or int(client_units) < client.new:
                 messages.error(request, 'Incorrect units!')
                 return
-            if not client.payed:
+            if not client.paid:
                 add_client_to_olddebts(client)
 
             client.old = client.new
             client.new = client_units
             client.reported = True
-            client.payed = False
+            client.paid = False
             client.save()
 
     if request.method == 'GET':
