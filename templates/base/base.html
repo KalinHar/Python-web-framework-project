@@ -46,37 +46,40 @@
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
+            {% profile_is request.user as pr %}
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
                 <div class="nav-item">
                     <a href="{% url 'home' %}" class="nav-link">
                             <i class="fa fa-home"></i>
                         <span class="d-none d-lg-inline-flex">Home</span>
                     </a>
-                    {% if request.user.is_authenticated %}
+                </div>
+                {% if request.user.is_authenticated %}
+                <div class="nav-item">
                         <span class="d-none d-lg-inline-flex">Welcome, {{ request.user.username }}</span>
+                </div>
+                {% endif %}
+                <!-- clients icons -->
+                <div class="navbar-nav align-items-center ms-auto cont ">
+                        <div class="nav-item">
+                        <a href="{% url 'announce' %}" class="nav-link"><i class="bi-card-image"></i>
+                            <span class="d-none d-lg-inline-flex">Announce</span>
+                        </a>
+                        </div>
+                    {% if pr and pr != 'guest' %}
+                        <div class="nav-item">
+                        <a href="{% url 'indications' %}" class="nav-link"><i class="bi-speedometer2"></i>
+                            <span class="d-none d-lg-inline-flex">Indications</span>
+                        </a>
+                        </div>
+                        <div class="nav-item">
+                        <a href="{% url 'all archive' %}" class="nav-link"><i class="bi-archive"></i>
+                            <span class="d-none d-lg-inline-flex">Archive</span>
+                        </a>
+                        </div>
                     {% endif %}
                 </div>
-                <!-- auth icons -->
-                {% if not request.user.is_authenticated %}
-                    <div class="nav-item">
-                        <a href="{% url 'login' %}" class="nav-link">
-                            <span class="d-none d-lg-inline-flex">Login</span>
-                        </a>
-                    </div>
-                    <div class="nav-item">
-                        <a href="{% url 'register' %}" class="nav-link">
-                            <span class="d-none d-lg-inline-flex">Register</span>
-                        </a>
-                    </div>
-                {% else %}
-                    <div class="nav-item">
-                        <a href="{% url 'logout' %}" class="nav-link">
-                            <span class="d-none d-lg-inline-flex">Logout</span>
-                        </a>
-                    </div>
-                {% endif %}
                 <!-- staff icons -->
-                {% profile_is request.user as pr %}
                 {% if pr == 'casher' %}
                     <div class="nav-item">
                         <a href="{% url 'old debts' %}" class="nav-link"><i class="bi-alarm"></i>
@@ -101,26 +104,25 @@
                         </a>
                     </div>
                 {% endif %}
-                <!-- clients icons -->
-                <div class="navbar-nav align-items-center ms-auto cont ">
-                        <div class="nav-item">
-                        <a href="{% url 'announce' %}" class="nav-link"><i class="bi-card-image"></i>
-                            <span class="d-none d-lg-inline-flex">Announce</span>
+                <!-- auth icons -->
+                {% if not request.user.is_authenticated %}
+                    <div class="nav-item">
+                        <a href="{% url 'login' %}" class="nav-link">
+                            <span class="d-none d-lg-inline-flex">Login</span>
                         </a>
-                        </div>
-                    {% if pr and pr != 'guest' %}
-                        <div class="nav-item">
-                        <a href="{% url 'indications' %}" class="nav-link"><i class="bi-speedometer2"></i>
-                            <span class="d-none d-lg-inline-flex">Indications</span>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{% url 'register' %}" class="nav-link">
+                            <span class="d-none d-lg-inline-flex">Register</span>
                         </a>
-                        </div>
-                        <div class="nav-item">
-                        <a href="{% url 'all archive' %}" class="nav-link"><i class="bi-archive"></i>
-                            <span class="d-none d-lg-inline-flex">Archive</span>
+                    </div>
+                {% else %}
+                    <div class="nav-item">
+                        <a href="{% url 'logout' %}" class="nav-link">
+                            <span class="d-none d-lg-inline-flex">Logout</span>
                         </a>
-                        </div>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
             </nav>
 
             <!-- Page Extension -->
