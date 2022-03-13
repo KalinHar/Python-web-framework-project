@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+{% load profile %}
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h3 class="text-primary">Add New Announce.</h3>
+                        </div>
+                        <form method="post" action="{% url 'add announce' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="form-floating mb-3">
+                                    <span class="row">
+                                        {{ field.label }}
+                                    </span>
+                                    <span class="row">
+                                        {{ field }}
+                                    </span>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

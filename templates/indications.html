@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load profile %}
+{% block page_content %}
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Indications</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                        <thead>
+                            <tr>
+                                <th  class="text-center" scope="col">#</th>
+                                <th class="text-center" scope="col">Client Name</th>
+                                <th class="text-end" scope="col">Old Units</th>
+                                <th class="text-end" scope="col">New Units</th>
+                                <th class="text-end" scope="col">Difference</th>
+                                <th class="text-end" scope="col">Sum</th>
+                                <th class="text-center" scope="col">Old Debts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- List of clients -->
+                        {% for cl in object_list %}
+                            {% is_client cl.username.pk request.user.pk as client %}
+                            <tr class="{% row_color cl.payed %}">
+                                <th class="text-center" scope="row">{{ cl.pk }}</th>
+                                <td>{{ cl.names }}</td>
+                                <td class="text-end">{{ cl.old }}</td>
+                                <td class="text-end">{{ cl.new }}</td>
+                                <td class="text-end">{{ cl.difference }}</td>
+                                <td class="text-end">{% sum_of cl.difference price tax %}</td>
+                                <td class="text-center">
+                                    <!-- Check current user is client and has old debts -->
+                                    {% if client and cl.old_debts %}
+                                        <a href="{% url 'client debts' cl.pk %}"><i class="bi-info-square-fill text-warning"></i></a>
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="8" class="text-end">*Тhe amounts are formed on the basis of kW price:€{{ price }} and fee:€{{ tax }}.</th>
+                            </tr>
+                        </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

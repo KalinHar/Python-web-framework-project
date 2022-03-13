@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load profile %}
+{% block page_content %}
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="bg-light rounded h-100 p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-4" type="text">Announce</h6>
+                        {% csrf_token %}
+                        {% profile_is request.user as pr%}
+                        {% if pr %}
+                            <a href="{% url 'add announce' %}" class="btn btn-outline-primary text-info">Add New</a>
+                        {% endif %}
+                    </div>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <!-- List of notes -->
+                        {% for el in object_list %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-heading{{ el.pk }}">
+                                    <button class="accordion-button" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ el.pk }}"
+                                        aria-expanded="true" aria-controls="flush-collapse{{ el.pk }}">
+                                        <div class="row w-100">
+                                            <span class="col text-start">{{ el.title }}</span>
+                                            <span class="col text-end me-3">User: {{ el.author }}</span>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse{{ el.pk }}" class="accordion-collapse collapse show"
+                                    aria-labelledby="flush-heading{{ el.pk }}" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body alert-info">
+                                        <div class="row w-100 align-items-center justify-content-center">
+                                            <span class="col">{{ el.content }}</span>
+                                            {% if el.image %}
+                                                <span class="col text-center text-">
+{#                                                <a href="#" id="pop">#}
+                                                    <img class="shadow-lg p-3 mb-5 rounded img-fluid mx-auto mb-3"
+                                                         src="{{ el.image.url }}" style="width: 200px; height: 200px;">
+{#                                                </a>#}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                        {% if request.user.pk == el.author.pk %}
+                                            <div class="btn-group-sm text-end">
+                                                <a href="{% url 'edit announce' el.pk %}"
+                                                   class="btn btn-outline-primary">Edit</a>
+                                                <a href="{% url 'delete announce' el.pk %}"
+                                                   class="btn btn-outline-danger">Delete</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

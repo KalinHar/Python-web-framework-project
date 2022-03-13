@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+{% load profile %}
+            <!-- payments Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Client Payments List</h6>
+                    </div>
+
+                    {% csrf_token %}
+                    {% for cl in object_list %}
+                        {% sum_of cl.difference price tax as client_sum %}
+                        <div class="d-flex border-bottom py-2">
+                            <div class="w-100 ms-3">
+                                <div class="row align-items-center">
+                                    <span class="col-12 col-md-1 text-center">{{ cl.pk }}</span>
+
+                                    <span class="col-12 col-md-3 text-start">{{ cl.names }}</span>
+
+                                    <span class="col-12 col-md-3">{{ cl.phone }}</span>
+
+                                    <span class="col-12 col-md-2 text-center">
+                                        {% if cl.old_debts %}
+                                            <a href="{% url 'client debts' cl.pk %}" class="text-warning">HAS OLD DEBTS</a>
+                                        {% else %}
+                                            No debts
+                                        {% endif %}
+                                    </span>
+
+                                    <span class="col-12 col-md-1 text-end">{{ client_sum }}</span>
+
+                                    <span class="col-12 col-md-1 text-center">
+                                        {% if cl.payed %}
+                                            Payed
+                                        {% else %}
+                                            <a href="{% url 'pay to' cl.pk %}" class="btn btn-sm btn-primary">Pay</a>
+                                        {% endif %}
+                                    </span>
+
+                                    <span class="col-12 col-md-1 text-center">
+                                        <a href="{% url 'edit client' cl.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="row justify-content-between  border-bottom alert-info w-100 ms-1 p-2">
+                        <span class="col text-center">Total costs: {{ total|floatformat:2 }}</span>
+                        <span class="col text-center">Cash availability: {{ debit|floatformat:2 }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- payments End -->
+{% endblock %}

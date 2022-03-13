@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+{% load profile %}
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4 pb-4">
+            <div class="col-12">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="row d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="col col-md-3">Archive content:</h6>
+                        <!-- Select button -->
+                        <div class="col col-md-2 btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select
+                            </button>
+                            <ul class="dropdown-menu">
+                                {% for data in all %}
+                                    <li><a class="dropdown-item" href="{% url 'view archive' data.pk %}">{{ data.from_date|date }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Display selected archive -->
+        {% if only_one %}
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="h-100 bg-light rounded p-4">
+
+                    <div class="row d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="col mb-0 ">Archive data from: {{ from_date|date }},
+                            with kW price: {{ taxes.fields.price|floatformat:2 }}
+                            and fee: {{ taxes.fields.tax|floatformat:2 }}.</h6>
+                    </div>
+
+                    {% csrf_token %}
+                    {% for cl in clients %}
+                        <div class="d-flex border-bottom py-2">
+                            <div class="w-100 ms-3">
+                                <div class="row align-items-center">
+                                    <span class="col-12 col-md-1 text-center"> {{ cl.pk }}</span>
+
+                                    <span class="col-12 col-md-3">{{ cl.fields.names }}</span>
+
+                                    <span class="col-12 col-md-3">{{ cl.fields.phone }}</span>
+
+                                    <span class="col-12 col-md-1 text-end">{{ cl.fields.old }}</span>
+
+                                    <span class="col-12 col-md-1 text-end">{{ cl.fields.new }}</span>
+                                    {% diff_of cl.fields.new cl.fields.old as diff %}
+                                    <span class="col-12 col-md-1 text-end">{{ diff }}</span>
+                                    {% sum_of diff taxes.fields.price taxes.fields.tax as sum %}
+                                    <span class="col-12 col-md-2 text-center">{{ sum }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
