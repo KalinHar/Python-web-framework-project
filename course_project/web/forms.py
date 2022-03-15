@@ -59,9 +59,9 @@ class AddAnnounceForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for f_name, field in self.fields.items():
-            # if not hasattr(field.widget, 'attrs'):
-            #     setattr(field.widget, 'attrs', {})
-            # field.widget.attrs['placeholder'] = f_name
+            if not hasattr(field.widget, 'attrs'):
+                setattr(field.widget, 'attrs', {})
+            field.widget.attrs['placeholder'] = f_name
 
             if f_name == 'author':
                 field.disabled = True

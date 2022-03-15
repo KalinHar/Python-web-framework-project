@@ -13,10 +13,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-
-
-# def home(request):
-#     return render(request, 'home.html')
 from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel
 from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive, Master
 
@@ -36,33 +32,9 @@ class LoginFormView(LoginView):
         message = 'Login failed!'
         return render(request, self.template_name, context={'form': form, 'message': message})
 
-
-# class LoginFormView(views.View):
-#     template_name = 'login.html'
-#     form_class = LoginForm
-#
-#     def get(self, request):
-#         form = self.form_class()
-#         message = ''
-#         return render(request, self.template_name, context={'form': form, 'message': message})
-#
-#     def post(self, request):
-#         form = self.form_class(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user = authenticate(
-#                 username=username,
-#                 password=password,
-#             )
-#             print(username, password, user)
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('home')
-#         message = 'Login failed!'
-#         return render(request, self.template_name, context={'form': form, 'message': message})
 # Todo: Permissions and authentications, modal for delete announce, master el_meter in reporting,
 # todo: homePage, , ref. FBV to CBV, expand img on announce , taxes form validation...
+
 
 class RegisterFormView(views.CreateView):
     template_name = 'auth/register.html'
@@ -82,12 +54,17 @@ class RegisterFormView(views.CreateView):
         username = form.data['username']
         password1 = form.data['password1']
         password2 = form.data['password2']
-        if len(password1) < 8:
+        users = [u.username for u in UserModel.objects.all()]
+        if len(username) < 4:
+            message = 'Too short username, , must be at least 4 symbols!'
+        elif username in users:
+            message = 'Username exist!'
+        elif len(password1) < 8:
             message = 'Password must contains digit and letters, and be at least 8 symbols.'
         elif password1 != password2:
             message = "Passwords don't match."
         else:
-            message = 'Username exist!'
+            message = 'Unsuccessful registration!'
         return render(request, self.template_name, context={'form': form, 'message': message})
 
 
@@ -127,7 +104,6 @@ class AddAnnounceView(LoginRequiredMixin, views.CreateView):
 
 class EditAnnounceView(views.UpdateView):
     model = Notice
-    # form_class = AddAnnounceForm
     fields = ('title', 'content', 'image',)
     template_name = 'editannounce.html'
     success_url = reverse_lazy('announce')
@@ -144,21 +120,6 @@ class EditAnnounceView(views.UpdateView):
         if notice.image and new_img != notice.image:
             os.remove(notice.image.path)
         return super().form_valid(form)
-
-    # def get(self, request, *args, **kwargs):
-    #     if self.request.user != self.get_object().author:
-    #         return redirect('403')
-    #     return super().get(request, *args, **kwargs)
-
-    # def get_initial(self):
-    #     return {
-    #         'author': self.request.user,
-    #     }
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['pk_id'] = self.object.pk
-    #     return context
 
 
 class DeleteAnnounce(views.DeleteView):
@@ -301,24 +262,6 @@ class EditClientView(PermissionRequiredMixin, views.UpdateView):
     template_name = 'editclient.html'
 
 
-# class ReportingView(views.ListView):
-#     model = Client
-#     template_name = 'reporting.html'
-#
-#     def get(self, request, *args, **kwargs):
-#         client_units = request.GET.get('units', None)
-#         client_id = request.GET.get('id', None)
-#         if client_units:
-#             report_client(client_id, client_units)
-#         return render(request, self.template_name, self.get_context_data(*args, **kwargs))
-#
-#     def report_client(self, client_id, client_units):
-#         client = Client.objects.get(pk=client_id)
-#         client.old = client.new
-#         client.new = client_units
-#         client.save()
-
-
 def reporting_view(request):
     if not request.user.has_perm('web.add_archive',):
         return redirect('403')
@@ -405,7 +348,7 @@ def add_archive(request):
     return redirect('reporting')
 
 
-def view_archive(request, pk):  #  todo: to CBV
+def view_archive(request, pk):
     if not request.user.has_perm('web.view_client',):
         return redirect('403')
     all = Archive.objects.all()
@@ -426,7 +369,7 @@ def view_archive(request, pk):  #  todo: to CBV
     return render(request, 'archive.html', context)
 
 
-def all_archive(request):  #  todo: to CBV
+def all_archive(request):
     if not request.user.has_perm('web.view_client',):
         return redirect('403')
     all = Archive.objects.all()

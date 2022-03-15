@@ -5,11 +5,11 @@
         <div class="row g-4 ">
             <div class="col-12">
                 <div class="h-100 bg-light rounded p-4">
-
+                    <!-- this is template for two view: 'client old debts' and 'all old debts' -->
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         {% if clients == 'all' %}
                             {% if object_list %}
-                                <h6 class="mb-0">Client Old debts List</h6>
+                                <h6 class="mb-0">Old debts Client List</h6>
                             {% else %}
                                 <h6 class="mb-0">Not Old debts.</h6>
                             {% endif %}
@@ -38,7 +38,6 @@
                                             ---
                                         {% endif %}
                                     </span>
-
                                 </div>
                             </div>
                         </div>
