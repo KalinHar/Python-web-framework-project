@@ -6,40 +6,74 @@
             <div class="col-12">
                 <div class="h-100 bg-light rounded p-4">
                     {% csrf_token %}
-{#                    {% if all_reported %}#}
+                    {% if all_reported and master.reported %}
                     <div class="row d-flex align-items-center justify-content-between mb-4">
                         <h6 class="col mb-0 text-warning">Warning: Before start reporting, add to archive current data!</h6>
                         <a href="{% url 'add archive' %}" class="col btn btn-sm btn-outline-warning">Add to Archive</a>
                     </div>
-                    <span>{{ all_reported }}</span>
-                    <!-- list of clients -->
-{#                    {% else %}#}
-                    {% for cl in object_list %}
+                    {% endif %}
+                    {% if report_master != 'done' %}
+                        {% for cl in object_list %}
+                            <div class="d-flex border-bottom py-2">
+                                <div class="w-100 ms-3">
+                                    <div class="row align-items-center">
+                                        <span class="col-12 col-md-3 text-start">{{ cl.names }}</span>
+
+                                        <span class="col-12 col-md-3">{{ cl.phone }}</span>
+
+                                        <span class="col-12 col-md-2 text-end">{{ cl.new }}</span>
+                                        {% if cl.reported %}
+                                        <span class="col-12 col-md-3 text-center">Reported</span>
+                                        {% else %}
+                                        <div class="col-12 col-md-3">
+                                            <form class="row" type="get" action="." style="margin: 0">
+                                                <input class="col-12 col-md-6 rounded text-center ms-2" name="units">
+                                                <input class="col-12 col-md-2" name="id" value="{{ cl.pk }}" type="hidden">
+                                                <button class="col-12 col-md-4 btn btn-sm btn-primary ms-2" type="submit" >Save</button>
+                                            </form>
+                                        </div>
+                                        {% endif %}
+                                        <span class="col-12 col-md-1 text-center"> {{ cl.pk }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if not master.reported and report_master != 'done'%}
+{#                        {% include 'report-master.html' %}#}
                         <div class="d-flex border-bottom py-2">
                             <div class="w-100 ms-3">
-                                <div class="row align-items-center">
-                                    <span class="col-12 col-md-3 text-start">{{ cl.names }}</span>
+                                <div class="row align-items-center text-info">
+                                    <span class="col-12 col-md-3 text-start">Master Wattmeter</span>
 
-                                    <span class="col-12 col-md-3">{{ cl.phone }}</span>
+                                    <span class="col-12 col-md-3">---</span>
 
-                                    <span class="col-12 col-md-2 text-end">{{ cl.new }}</span>
-                                    {% if cl.reported %}
-                                    <span class="col-12 col-md-3 text-center">Reported</span>
-                                    {% else %}
+                                    <span class="col-12 col-md-3 text-end">{{ master.new }}</span>
                                     <div class="col-12 col-md-3">
                                         <form class="row" type="get" action="." style="margin: 0">
-                                            <input class="col-12 col-md-6 rounded text-center ms-2" name="units">
-                                            <input class="col-12 col-md-2" name="id" value="{{ cl.pk }}" type="hidden">
+                                            <input class="col-12 col-md-6 rounded text-center ms-2" name="m_units">
                                             <button class="col-12 col-md-4 btn btn-sm btn-primary ms-2" type="submit" >Save</button>
                                         </form>
                                     </div>
-                                    {% endif %}
-                                    <span class="col-12 col-md-1 text-center"> {{ cl.pk }}</span>
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
-{#                    {% endif %}#}
+                    {% endif %}
+                    {% if report_master == 'done' %}
+                    <br/>
+                    <div class="row d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="text-center text-success">All data successful reported.</h6>
+                    </div>
+                    <div class="row d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="text-center text-success">Clients units: {{ clients_kw }}kW.</h6>
+                        <h6 class="text-center text-success">Master units: {{ master_kw }}kW.</h6>
+                        {% diff_of clients_kw master_kw as diff %}
+                        <h6 class="text-center text-{% if diff < 0 %}danger{% else %}success{% endif %}">
+                            Difference: {{ diff }}kW.</h6>
+                    {% endif %}
+                    </div>
+                    <br/>
+                    <br/>
 
                 </div>
             </div>

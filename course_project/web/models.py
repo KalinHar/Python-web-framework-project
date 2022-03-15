@@ -167,6 +167,10 @@ class Master(models.Model):
         ),
     )
 
+    reported = models.BooleanField(
+        default=False,
+    )
+
     @property
     def difference(self):
         return self.new - self.old

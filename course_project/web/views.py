@@ -18,7 +18,7 @@ from django.views import generic as views
 # def home(request):
 #     return render(request, 'home.html')
 from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel
-from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive
+from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive, Master
 
 
 class HomeView(views.View):
@@ -62,7 +62,7 @@ class LoginFormView(LoginView):
 #         message = 'Login failed!'
 #         return render(request, self.template_name, context={'form': form, 'message': message})
 # Todo: Permissions and authentications, modal for delete announce, master el_meter in reporting,
-# todo: homePage, , ref. FBV to CBV, expand img on announce...
+# todo: homePage, , ref. FBV to CBV, expand img on announce , taxes form validation...
 
 class RegisterFormView(views.CreateView):
     template_name = 'auth/register.html'
@@ -324,14 +324,33 @@ def reporting_view(request):
         return redirect('403')
     object_list = Client.objects.all()
     taxes = Taxes.objects.all()[0]
-    # all_clients = object_list.count()
-    # all_reported = [o for o in object_list if not o.reported]
+    master = Master.objects.all()[0]
+
     context = {
         'object_list': object_list,
+        'master': master,
     }
+    if Client.objects.filter(reported=False).count() == 0:
+        context['all_reported'] = True
+    else:
+        context['all_reported'] = False
 
-    def report_master():  # todo: implement master in separated view
-        pass
+    def report_master(m_units):
+        master = Master.objects.all()[0]
+        if not m_units.isdecimal() or int(m_units) < master.new:
+            messages.error(request, 'Incorrect units!')
+            return
+
+        master.old = master.new
+        master.new = m_units
+        master.reported = True
+        master.save()
+
+        clients_kw = sum(cl.difference for cl in Client.objects.all())
+        master_kw = Master.objects.all()[0].difference
+        context['clients_kw'] = clients_kw
+        context['master_kw'] = master_kw
+        context['report_master'] = 'done'
 
     def add_client_to_olddebts(client):
         new_debt = OldDebts()
@@ -342,28 +361,31 @@ def reporting_view(request):
         client.old_debts += 1
 
     def report_client(client_id, client_units):
-            client = object_list.get(pk=client_id)
-            if not client_units.isdecimal() or int(client_units) < client.new:
-                messages.error(request, 'Incorrect units!')
-                return
-            if not client.paid:
-                add_client_to_olddebts(client)
+        client = object_list.get(pk=client_id)
+        if not client_units.isdecimal() or int(client_units) < client.new:
+            messages.error(request, 'Incorrect units!')
+            return
+        if not client.paid:
+            add_client_to_olddebts(client)
 
-            client.old = client.new
-            client.new = client_units
-            client.reported = True
-            client.paid = False
-            client.save()
+        client.old = client.new
+        client.new = client_units
+        client.reported = True
+        client.paid = False
+        client.save()
 
-            if Client.objects.filter(reported=False).count() == 0:
-                context['all_reported'] = 'yes'
-                report_master()
+        if Client.objects.filter(reported=False).count() == 0:
+            master.reported = False
+            master.save()
 
     if request.method == 'GET':
         client_units = request.GET.get('units', None)
         client_id = request.GET.get('id', None)
+        master_units = request.GET.get('m_units', None)
         if client_id:
             report_client(client_id, client_units)
+        if master_units:
+            report_master(master_units)
 
     return render(request, 'reporting.html', context)
 

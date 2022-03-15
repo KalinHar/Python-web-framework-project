@@ -33,7 +33,7 @@ def diff_of(a, b):
 @register.simple_tag
 def row_color(paid):
     if paid:
-        return 'alert-info'
+        return 'alert-success'
     return 'alert-warning'
 
 
