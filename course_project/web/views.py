@@ -253,6 +253,17 @@ class EditTaxesView(PermissionRequiredMixin, views.UpdateView):
         context['pk'] = self.TAXES_PK
         return context
 
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return super().post(self, request, *args, **kwargs)
+        price = form.data['price']
+        tax = form.data['tax']
+        message = ''
+        if float(price) < 0 or float(tax) < 0:
+            message = 'The price and tax must be positive numbers!'
+        return render(request, self.template_name, context={'form': form, 'message': message, 'pk': self.TAXES_PK})
+
 
 class EditClientView(PermissionRequiredMixin, views.UpdateView):
     permission_required = ('web.change_taxes',)
