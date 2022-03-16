@@ -40,37 +40,7 @@
                                 </td>
                             </tr>
                         {% endfor %}
-                        <div class="pagination">
-                            <span class="step-links">
-                                {% if page_obj.has_previous %}
-                                    <a class="btn btn-sm btn-outline-primary" href="?page=1">&laquo;</a>
-                                    <a class="btn btn-sm btn-outline-primary" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-                                {% else %}
-                                    <a class="btn btn-sm btn-outline-primary" disabled="disabled">&laquo;</a>
-                                    <a class="btn btn-sm btn-outline-primary" disabled="disabled">&lt;</a>
-                                {% endif %}
-                                {% for p in paginator %}
-                                    <span class="current">
-                                        {% if p.number == page_obj.number %}
-                                            <a class="btn btn-sm btn-primary" disabled="disabled">{{ p.number }}</a>
-                                        {% else %}
-                                            <a class="btn btn-sm btn-outline-primary" href="?page={{ p.number }}">{{ p.number }}</a>
-                                        {% endif %}
-                                    </span>
-                                {% endfor %}
-{#                                <span class="current">#}
-{#                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
-{#                                </span>#}
-                                {% if page_obj.has_next %}
-                                    <a class="btn btn-sm btn-outline-primary" href="?page={{ page_obj.next_page_number }}">&gt;</a>
-                                    <a class="btn btn-sm btn-outline-primary" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
-                                {% else %}
-                                    <a class="btn btn-sm btn-outline-primary" disabled="disabled">&gt;</a>
-                                    <a class="btn btn-sm btn-outline-primary" disabled="disabled">&raquo;</a>
-                                {% endif %}
-                            </span>
-                            <br/>
-                        </div>
+                        {% include 'web/paginator.html' %}
                         </tbody>
                         <tfoot>
                             <tr>
