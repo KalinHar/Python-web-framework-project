@@ -16,6 +16,9 @@ from django.views import generic as views
 from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel
 from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive, Master
 
+# Todo: Permissions and authentications, modal for delete announce, pagination,
+# todo: homePage, expand img on announce ...
+
 
 class HomeView(views.View):
     def get(self, request):
@@ -31,9 +34,6 @@ class LoginFormView(LoginView):
             return self.form_valid(form)
         message = 'Login failed!'
         return render(request, self.template_name, context={'form': form, 'message': message})
-
-# Todo: Permissions and authentications, modal for delete announce, master el_meter in reporting,
-# todo: homePage, , ref. FBV to CBV, expand img on announce , taxes form validation...
 
 
 class RegisterFormView(views.CreateView):
@@ -71,6 +71,7 @@ class RegisterFormView(views.CreateView):
 class IndicationsListView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.view_client',)
     model = Client
+    paginate_by = 2
     template_name = 'indications.html'
 
     def get_context_data(self, **kwargs):
