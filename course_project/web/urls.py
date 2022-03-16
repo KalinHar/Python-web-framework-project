@@ -3,7 +3,8 @@ from django.urls import path
 from course_project.web.views import HomeView, LoginFormView, RegisterFormView, \
     IndicationsListView, AnnounceView, PaymentsView, EditTaxesView, OldDebtsView, \
     pay_to, client_debts, clear_debt, EditClientView, AddAnnounceView, EditAnnounceView, delete_announce, add_archive, \
-    view_archive, all_archive, reporting_view, ForbiddenPageView, ClientOldDebtsView, DeleteAnnounce, announce_confirm
+    view_archive, all_archive, reporting_view, ForbiddenPageView, ClientOldDebtsView, DeleteAnnounce, announce_confirm, \
+    EditUnitsView
 
 urlpatterns = (
     path('', HomeView.as_view(), name='home'),
@@ -26,6 +27,7 @@ urlpatterns = (
     path('edit/client/<int:pk>/', EditClientView.as_view(), name='edit client'),
 
     path('reporting/', reporting_view, name='reporting'),
+    path('edit/units/', EditUnitsView.as_view(), name='edit units'),
 
     path('add/archive/', add_archive, name='add archive'),
     path('view/archive/<int:pk>/', view_archive, name='view archive'),

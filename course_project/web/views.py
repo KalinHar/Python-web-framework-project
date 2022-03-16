@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 
 from django.core import serializers
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -71,7 +72,7 @@ class RegisterFormView(views.CreateView):
 class IndicationsListView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.view_client',)
     model = Client
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'indications.html'
 
     def get_context_data(self, **kwargs):
@@ -343,6 +344,39 @@ def reporting_view(request):
             report_master(master_units)
 
     return render(request, 'reporting.html', context)
+
+
+class EditUnitsView(views.TemplateView):
+
+    def get_client(self, pk):
+        client = Client.objects.filter(pk=pk).first()
+        if client:
+            context = self.get_context_data()
+            context['client'] = client
+            context['client_pk'] = client.pk
+            return context
+        messages.error(self.request, 'Incorrect client number!')
+
+    def edit_units(self, units, pk):
+        client = Client.objects.get(pk=pk)
+        if client.old < int(units):
+            client.new = int(units)
+            client.save()
+            return True
+        messages.error(self.request, 'Incorrect units!')
+
+    def get(self, request, *args, **kwargs):
+        client_pk = request.GET.get('client_pk', None)
+        new_units = request.GET.get('new_units', None)
+
+        if new_units:
+            if self.edit_units(new_units, client_pk):
+                return HttpResponseRedirect(reverse_lazy('indications'))
+        if client_pk:
+            context = self.get_client(client_pk)
+            if context:
+                return render(request, 'editunits.html', context=context)
+        return render(request, 'editunits.html')
 
 
 def add_archive(request):

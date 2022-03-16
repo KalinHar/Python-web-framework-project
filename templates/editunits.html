@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+{% load profile %}
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4 pb-4">
+            <div class="col-12">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="row d-flex align-items-center justify-content-between mb-4">
+                        {% if not client %}
+                            <!-- Get client -->
+                            <h6 class="col col-md-3">Enter Client Number:</h6>
+                            <div class="col-12 col-md-3">
+                                <form class="row" type="get" action="." style="margin: 0">
+                                    <input class="col-12 col-md-6 rounded text-center ms-2" name="client_pk">
+                                    <button class="col-12 col-md-4 btn btn-sm btn-primary ms-2" type="submit" >Edit</button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <!-- Edit client units -->
+                            <h6 class="col col-12 col-md-6">
+                                Client Number {{ client.pk }} with last units old: {{ client.old }} and new: {{ client.new }}
+                            </h6>
+                            <div class="col col-12 col-md-6 align-items-center justify-content-between">
+                                <form class="row d-flex mb-4" type="get" action="." style="margin: 0">
+                                    <span class="col text-end ms-2">New units:</span>
+                                    <input type="hidden" name="client_pk" value="{{ client.pk }}">
+                                    <input class="col rounded text-center ms-2" name="new_units">
+                                    <button class="col btn btn-sm btn-primary ms-2" type="submit" >Save</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
