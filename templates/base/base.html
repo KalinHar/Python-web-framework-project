@@ -99,6 +99,11 @@
                 {% endif %}
                 {% if pr == 'reporter' %}
                     <div class="nav-item">
+                        <a href="{% url 'edit master' 1 %}" class="nav-link"><i class="bi-lightning"></i>
+                            <span class="d-none d-lg-inline-flex">Master</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
                         <a href="{% url 'edit units' %}" class="nav-link"><i class="bi-pencil"></i>
                             <span class="d-none d-lg-inline-flex">Edit</span>
                         </a>

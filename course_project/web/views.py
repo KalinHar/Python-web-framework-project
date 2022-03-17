@@ -348,8 +348,8 @@ def reporting_view(request):
     return render(request, 'reporting.html', context)
 
 
-class EditUnitsView(views.TemplateView):
-
+class EditUnitsView(PermissionRequiredMixin, views.TemplateView):
+    permission_required = ('web.add_archive',)
     def get_client(self, pk):
         client = Client.objects.filter(pk=pk).first()
         if client:
@@ -379,6 +379,24 @@ class EditUnitsView(views.TemplateView):
             if context:
                 return render(request, 'editunits.html', context=context)
         return render(request, 'editunits.html')
+
+
+class EditMasterView(PermissionRequiredMixin, views.UpdateView):
+    permission_required = ('web.add_archive',)
+    model = Master
+    fields = '__all__'
+    template_name = 'master.html'
+    success_url = reverse_lazy('indications')
+
+    def form_valid(self, form):
+        old = form.data['old']
+        new = form.data['new']
+        if 0 < int(old) <= int(new):
+            messages.success(self.request, 'Master units successful updated.')
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, 'Incorrect Master units!')
+            return super().form_invalid(form)
 
 
 def add_archive(request):
