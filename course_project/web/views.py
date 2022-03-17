@@ -17,7 +17,7 @@ from django.views import generic as views
 from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel
 from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive, Master
 
-# Todo: Permissions and authentications, modal for delete announce, pagination,
+# Todo: Permissions and authentications, modal for delete announce,
 # todo: homePage, expand img on announce ...
 
 
@@ -251,8 +251,10 @@ class EditTaxesView(PermissionRequiredMixin, views.UpdateView):
     success_url = reverse_lazy('indications')
 
     def get_context_data(self, **kwargs):
+        paid_clients = Client.objects.filter(paid=True).count()
         context = super().get_context_data(**kwargs)
         context['pk'] = self.TAXES_PK
+        context['paid_clients'] = paid_clients
         return context
 
     def post(self, request, *args, **kwargs):

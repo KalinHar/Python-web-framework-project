@@ -5,6 +5,13 @@
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                        {% if paid_clients > 0 %}
+                            <h5 class="text-warning">
+                                There are {{ paid_clients }} clients who paid, fix them in
+                                <a href="{% url 'payments' %}" class="text-info">Payments</a>
+                                or continue with updating
+                            </h5>
+                        {% endif %}
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h3 class="text-primary">Entry New Taxes.</h3>
                         </div>
