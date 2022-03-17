@@ -219,11 +219,13 @@ class PaymentsView(PermissionRequiredMixin, views.ListView):
         context = super().get_context_data(**kwargs)
 
         taxes = Taxes.objects.all()[0]
-        clients = self.model.objects.all()
-
+        master = Master.objects.all()[0]
+        clients = self.object_list
         debit = sum(map(lambda cl_p: cl_p.difference * taxes.price + taxes.tax, filter(lambda cl: cl.paid, clients)))
         total = sum(map(lambda cl: cl.difference * taxes.price + taxes.tax, clients))
 
+        context['m_units'] = master.difference
+        context['m_cost'] = master.difference * taxes.price
         context['price'] = taxes.price
         context['tax'] = taxes.tax
         context['debit'] = debit
