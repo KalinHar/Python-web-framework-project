@@ -94,6 +94,56 @@
     color: crimson;
 }
 
+#id_username {
+    display: block;
+    width: 100%;
+}
+
+#id_old_debts {
+    display: block;
+    width: 100%;
+}
+
+#id_reported {
+    display: block;
+    width: 50%;
+}
+
+#id_old {
+    display: block;
+    width: 100%;
+}
+
+#id_new {
+    display: block;
+    width: 100%;
+}
+
+#id_names {
+    display: block;
+    width: 100%;
+}
+
+#id_phone {
+    display: block;
+    width: 100%;
+}
+
+#id_paid {
+    display: block;
+    width: 50%;
+}
+
+#id_price {
+    display: block;
+    width: 50%;
+}
+
+#id_tax {
+    display: block;
+    width: 50%;
+}
+
 /*** Layout ***/
 .sidebar {
     position: fixed;

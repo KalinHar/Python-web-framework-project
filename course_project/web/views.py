@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel, \
-    EditAnnounceForm
+    EditAnnounceForm, DeleteAnnounceForm, UpdateTaxesForm
 from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive, Master
 
 # Todo: Perms and auth, modal for delete announce, homePage, expand img in announce ...
@@ -72,7 +72,7 @@ class RegisterFormView(views.CreateView):
 class IndicationsListView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.view_client',)
     model = Client
-    paginate_by = 10
+    paginate_by = 2
     template_name = 'indications.html'
 
     def get_context_data(self, **kwargs):
@@ -130,6 +130,7 @@ class EditAnnounceView(views.UpdateView):
 
 class DeleteAnnounce(views.DeleteView):
     template_name = 'web/confirm_delete.html'
+    form_class = DeleteAnnounceForm
     model = Notice
     success_url = reverse_lazy('announce')
 
@@ -139,11 +140,13 @@ class DeleteAnnounce(views.DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        form.instance = self.object
         notice = self.get_object()
         if notice.image:
             os.remove(notice.image.path)
         messages.warning(self.request, "Delete successful.")
         return super().form_valid(form)
+
 
 
 def delete_announce(request, pk):
@@ -254,7 +257,8 @@ class EditTaxesView(PermissionRequiredMixin, views.UpdateView):
     TAXES_PK = 1
     permission_required = ('web.change_taxes',)
     model = Taxes
-    fields = '__all__'
+    form_class = UpdateTaxesForm
+    # fields = '__all__'
     template_name = 'taxes.html'
     success_url = reverse_lazy('indications')
 
@@ -265,16 +269,16 @@ class EditTaxesView(PermissionRequiredMixin, views.UpdateView):
         context['paid_clients'] = paid_clients
         return context
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            return super().post(self, request, *args, **kwargs)
-        price = form.data['price']
-        tax = form.data['tax']
-        message = ''
-        if float(price) < 0 or float(tax) < 0:
-            message = 'The price and tax must be positive numbers!'
-        return render(request, self.template_name, context={'form': form, 'message': message, 'pk': self.TAXES_PK})
+    # def post(self, request, *args, **kwargs):
+    #     form = self.get_form()
+    #     if form.is_valid():
+    #         return super().post(self, request, *args, **kwargs)
+    #     # price = form.data['price']
+    #     # tax = form.data['tax']
+    #     # message = ''
+    #     # if float(price) < 0 or float(tax) < 0:
+    #     #     message = 'The price and tax must be positive numbers!'
+    #     return render(request, self.template_name, context={'form': form, 'message': message, 'pk': self.TAXES_PK})
 
 
 class EditClientView(PermissionRequiredMixin, views.UpdateView):
@@ -283,6 +287,15 @@ class EditClientView(PermissionRequiredMixin, views.UpdateView):
     form_class = EditClientForm
     success_url = reverse_lazy('payments')
     template_name = 'editclient.html'
+
+    def form_valid(self, form):
+        form.instance.old_debts = self.object.old_debts
+        form.instance.reported = self.object.reported
+        form.instance.old = self.object.old
+        form.instance.new = self.object.new
+
+        messages.success(self.request, "Client successful edited.")
+        return super().form_valid(form)
 
 
 def reporting_view(request):
