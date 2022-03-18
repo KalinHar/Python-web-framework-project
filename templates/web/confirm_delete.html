@@ -10,9 +10,13 @@
                         </div>
                         <form method="post" action="{% url 'delete announce' object.pk %}" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <h4>Announce: {{ object.title }}</h4>
-                            <h4 class="mb-5">Author: {{ object.author }}</h4>
-                            <h6 class="text-primary mb-5">Are you sure?</h6>
+                            <h4 class="text-primary mb-3">
+                                Announce: <span class="text-black-50">{{ object.title }}</span>
+                            </h4>
+                            <h4 class="text-primary mb-3">
+                                Author: <span class="text-black-50">{{ object.author }}
+                            </span></h4>
+                            <h5 class="text-primary mb-3">Are you sure?</h5>
                             <button type="submit" class="btn btn-outline-danger py-3 w-100 mb-4">Yes</button>
                         </form>
                         <a href="{% url 'announce' %}" class="btn btn-outline-primary py-3 w-100 mb-4">No</a>
