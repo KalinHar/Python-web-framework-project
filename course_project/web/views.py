@@ -85,14 +85,14 @@ class IndicationsListView(PermissionRequiredMixin, views.ListView):
 
 class AnnounceView(views.ListView):
     model = Notice
-    template_name = 'announce.html'
+    template_name = 'announce/announce.html'
 
 
 class AddAnnounceView(LoginRequiredMixin, views.CreateView):
     model = Notice
     form_class = AddAnnounceForm
     # fields = ('title', 'content', 'image',)
-    template_name = 'addannounce.html'
+    template_name = 'announce/add-announce.html'
     success_url = reverse_lazy('announce')
 
     def form_valid(self, form):
@@ -110,7 +110,7 @@ class EditAnnounceView(views.UpdateView):
     model = Notice
     form_class = EditAnnounceForm
     # fields = ('title', 'content', 'image',)
-    template_name = 'editannounce.html'
+    template_name = 'announce/edit-announce.html'
     success_url = reverse_lazy('announce')
 
     def dispatch(self, request, *args, **kwargs):
@@ -164,7 +164,7 @@ def delete_announce(request, pk):
 class OldDebtsView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.change_taxes',)
     model = OldDebts
-    template_name = 'olddebts.html'
+    template_name = 'payments/old-debts.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -178,7 +178,7 @@ class ClientOldDebtsView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.view_client',)
     CASHER = 'nushka'
     model = OldDebts
-    template_name = 'olddebts.html'
+    template_name = 'payments/old-debts.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -204,7 +204,7 @@ def client_debts(request, pk):
         'object_list': object_list,
         'pay_btn': pay_btn,
     }
-    return render(request, 'olddebts.html', context)
+    return render(request, 'payments/old-debts.html', context)
 
 
 def clear_debt(request, pk):
@@ -222,7 +222,7 @@ def clear_debt(request, pk):
 class PaymentsView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.change_taxes',)
     model = Client
-    template_name = 'payments.html'
+    template_name = 'payments/payments.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -232,6 +232,7 @@ class PaymentsView(PermissionRequiredMixin, views.ListView):
         clients = self.object_list
         debit = sum(map(lambda cl_p: cl_p.difference * taxes.price + taxes.tax, filter(lambda cl: cl.paid, clients)))
         total = sum(map(lambda cl: cl.difference * taxes.price + taxes.tax, clients))
+        cl_units = sum(map(lambda cl: cl.difference, clients))
 
         context['m_units'] = master.difference
         context['m_cost'] = master.difference * taxes.price
@@ -239,6 +240,7 @@ class PaymentsView(PermissionRequiredMixin, views.ListView):
         context['tax'] = taxes.tax
         context['debit'] = debit
         context['total'] = total
+        context['cl_units'] = cl_units
 
         return context
 
@@ -259,8 +261,8 @@ class EditTaxesView(PermissionRequiredMixin, views.UpdateView):
     model = Taxes
     form_class = UpdateTaxesForm
     # fields = '__all__'
-    template_name = 'taxes.html'
-    success_url = reverse_lazy('indications')
+    template_name = 'payments/taxes.html'
+    success_url = reverse_lazy('payments')
 
     def get_context_data(self, **kwargs):
         paid_clients = Client.objects.filter(paid=True).count()
@@ -286,7 +288,7 @@ class EditClientView(PermissionRequiredMixin, views.UpdateView):
     model = Client
     form_class = EditClientForm
     success_url = reverse_lazy('payments')
-    template_name = 'editclient.html'
+    template_name = 'payments/edit-client.html'
 
     def form_valid(self, form):
         form.instance.old_debts = self.object.old_debts
@@ -366,7 +368,7 @@ def reporting_view(request):
         if master_units:
             report_master(master_units)
 
-    return render(request, 'reporting.html', context)
+    return render(request, 'reporting/reporting.html', context)
 
 
 class EditUnitsView(PermissionRequiredMixin, views.TemplateView):
@@ -398,15 +400,15 @@ class EditUnitsView(PermissionRequiredMixin, views.TemplateView):
         if client_pk:
             context = self.get_client(client_pk)
             if context:
-                return render(request, 'editunits.html', context=context)
-        return render(request, 'editunits.html')
+                return render(request, 'reporting/edit-units.html', context=context)
+        return render(request, 'reporting/edit-units.html')
 
 
 class EditMasterView(PermissionRequiredMixin, views.UpdateView):
     permission_required = ('web.add_archive',)
     model = Master
     fields = '__all__'
-    template_name = 'master.html'
+    template_name = 'reporting/master.html'
     success_url = reverse_lazy('indications')
 
     def form_valid(self, form):
@@ -470,7 +472,3 @@ def all_archive(request):
 class ForbiddenPageView(views.View):
     def get(self, request):
         return render(request, '403.html')
-
-
-def announce_confirm(request):
-    return render(request, 'web/notice_confirm_delete.html')

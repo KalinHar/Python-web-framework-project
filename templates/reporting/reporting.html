@@ -13,10 +13,10 @@
                         </div>
                     {% endif %}
                     {% if report_master != 'done' %}
-                        {% include 'report-clients.html' %}
+                        {% include 'reporting/report-clients.html' %}
                     {% endif %}
                     {% if not master.reported and report_master != 'done'%}
-                        {% include 'report-master.html' %}
+                        {% include 'reporting/report-master.html' %}
                     {% endif %}
                     {% if report_master == 'done' %}
                         <br/>
