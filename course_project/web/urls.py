@@ -13,7 +13,7 @@ urlpatterns = (
     path('announce/', AnnounceView.as_view(), name='announce'),
     path('announce/add/', AddAnnounceView.as_view(), name='add announce'),
     path('announce/edit/<int:pk>/', EditAnnounceView.as_view(), name='edit announce'),
-    path('announce/delete/<int:pk>/', delete_announce, name='delete announce'),
+    path('announce/delete/<int:pk>/', DeleteAnnounce.as_view(), name='delete announce'),
 
     path('announce/confirm/', announce_confirm, name='confirm'),
 

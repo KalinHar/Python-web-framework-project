@@ -1,6 +1,13 @@
 (function ($) {
     "use strict";
 
+    // pop-up
+    // $('.pop-up').click(function popitup(url) {
+    //     var newwindow=window.open(url,'delete','height=200,width=400');
+    //     if (window.focus) {newwindow.focus()}
+    //     return false;
+    // });
+
     // alert messages
     var message_ele = document.getElementById("message_container");
 

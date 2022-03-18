@@ -64,6 +64,35 @@
     border-radius: 50px;
 }
 
+#id_title {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#id_content {
+    display: block;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+}
+#id_image {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#id_author{
+    display: block;
+    margin-bottom: 10px;
+}
+
+#image-clear_id {
+    display: inline-block;
+}
+
+.errorlist {
+    color: crimson;
+}
 
 /*** Layout ***/
 .sidebar {

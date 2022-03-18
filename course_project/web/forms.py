@@ -62,10 +62,23 @@ class AddAnnounceForm(forms.ModelForm):
             if not hasattr(field.widget, 'attrs'):
                 setattr(field.widget, 'attrs', {})
             field.widget.attrs['placeholder'] = f_name
+            field.widget.attrs['class'] = 'form-floating mb-3'
 
+    class Meta:
+        model = Notice
+        fields = ('title','content', 'image',)
+
+
+class EditAnnounceForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f_name, field in self.fields.items():
+            if not hasattr(field.widget, 'attrs'):
+                setattr(field.widget, 'attrs', {})
+            field.widget.attrs['class'] = 'form-floating mb-3'
             if f_name == 'author':
                 field.disabled = True
 
     class Meta:
         model = Notice
-        fields = ('title','content', 'image',)
+        fields = '__all__'

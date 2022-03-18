@@ -14,11 +14,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel
+from course_project.web.forms import LoginForm, RegisterForm, EditClientForm, AddAnnounceForm, UserModel, \
+    EditAnnounceForm
 from course_project.web.models import Client, Taxes, Notice, OldDebts, Archive, Master
 
-# Todo: Permissions and authentications, modal for delete announce,
-# todo: homePage, expand img on announce ...
+# Todo: Perms and auth, modal for delete announce, homePage, expand img in announce ...
 
 
 class HomeView(views.View):
@@ -90,12 +90,14 @@ class AnnounceView(views.ListView):
 
 class AddAnnounceView(LoginRequiredMixin, views.CreateView):
     model = Notice
-    fields = ('title', 'content', 'image',)
+    form_class = AddAnnounceForm
+    # fields = ('title', 'content', 'image',)
     template_name = 'addannounce.html'
     success_url = reverse_lazy('announce')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        messages.success(self.request, "New Notice add successful.")
         return super().form_valid(form)
 
     # def get_initial(self):
@@ -106,7 +108,8 @@ class AddAnnounceView(LoginRequiredMixin, views.CreateView):
 
 class EditAnnounceView(views.UpdateView):
     model = Notice
-    fields = ('title', 'content', 'image',)
+    form_class = EditAnnounceForm
+    # fields = ('title', 'content', 'image',)
     template_name = 'editannounce.html'
     success_url = reverse_lazy('announce')
 
@@ -116,15 +119,17 @@ class EditAnnounceView(views.UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        # form.instance.author = self.request.user
         notice = self.get_object()
         new_img = form.cleaned_data['image']
         if notice.image and new_img != notice.image:
             os.remove(notice.image.path)
+        messages.success(self.request, "Notice successful edited.")
         return super().form_valid(form)
 
 
 class DeleteAnnounce(views.DeleteView):
+    template_name = 'web/confirm_delete.html'
     model = Notice
     success_url = reverse_lazy('announce')
 
@@ -137,6 +142,7 @@ class DeleteAnnounce(views.DeleteView):
         notice = self.get_object()
         if notice.image:
             os.remove(notice.image.path)
+        messages.warning(self.request, "Delete successful.")
         return super().form_valid(form)
 
 

@@ -8,7 +8,7 @@ def file_max_size(value):
     max_size = 5
     filesize = value.file.size
     if filesize > max_size * 1024 * 1024:
-        raise ValidationError(f'File max size is {max_size}MB.')
+        raise ValidationError(f'Image file size is larger of {max_size}MB.')
 
 
 def phone_validator(value):

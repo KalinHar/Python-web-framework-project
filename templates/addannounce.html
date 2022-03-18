@@ -10,16 +10,17 @@
                         </div>
                         <form method="post" action="{% url 'add announce' %}" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% for field in form %}
-                                <div class="form-floating mb-3">
-                                    <span class="row">
-                                        {{ field.label }}
-                                    </span>
-                                    <span class="row">
-                                        {{ field }}
-                                    </span>
-                                </div>
-                            {% endfor %}
+                            {{ form }}
+{#                            {% for field in form %}#}
+{#                                <div class="form-floating mb-3">#}
+{#                                    <span class="row">#}
+{#                                        {{ field.label }}#}
+{#                                    </span>#}
+{#                                    <span class="row">#}
+{#                                        {{ field }}#}
+{#                                    </span>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Add</button>
                         </form>
                     </div>

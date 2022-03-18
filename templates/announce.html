@@ -35,10 +35,10 @@
                                             <span class="col">{{ el.content }}</span>
                                             {% if el.image %}
                                                 <span class="col text-center text-">
-{#                                                <a href="#" id="pop">#}
+                                                <a href="{{ el.image.url }}">
                                                     <img class="shadow-lg p-3 mb-5 rounded img-fluid mx-auto mb-3"
                                                          src="{{ el.image.url }}" style="width: 200px; height: 200px;">
-{#                                                </a>#}
+                                                </a>
                                                 </span>
                                             {% endif %}
                                         </div>
@@ -47,6 +47,7 @@
                                                 <a href="{% url 'edit announce' el.pk %}"
                                                    class="btn btn-outline-primary">Edit</a>
                                                 <a href="{% url 'delete announce' el.pk %}"
+{#                                                   onclick="return popitup('')"#}
                                                    class="btn btn-outline-danger">Delete</a>
                                             </div>
                                         {% endif %}
@@ -61,3 +62,4 @@
     </div>
 
 {% endblock %}
+
