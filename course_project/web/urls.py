@@ -8,6 +8,7 @@ from django.urls import path
 from course_project.web.views.announce import AnnounceView, AddAnnounceView, EditAnnounceView, DeleteAnnounceView
 from course_project.web.views.archive import view_archive, all_archive
 from course_project.web.views.auth import LoginFormView, RegisterFormView
+from course_project.web.views.client_info import ClientDetailsView
 from course_project.web.views.error_page import ForbiddenPageView
 from course_project.web.views.home import HomeView
 from course_project.web.views.indications import IndicationsListView
@@ -19,6 +20,7 @@ urlpatterns = (
     path('', HomeView.as_view(), name='home'),
 
     path('indications/', IndicationsListView.as_view(), name='indications'),
+    path('client-details/<int:pk>/', ClientDetailsView.as_view(), name='client details'),
 
     path('announce/', AnnounceView.as_view(), name='announce'),
     path('announce/add/', AddAnnounceView.as_view(), name='add announce'),
