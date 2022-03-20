@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Indications</h6>
-                    <div class="table-responsive">
+                    <div class="table-responsive mb-5">
                         <table class="table">
                         <thead>
                             <tr>
@@ -16,7 +16,7 @@
                                 <th class="text-end" scope="col">New Units</th>
                                 <th class="text-end" scope="col">Difference</th>
                                 <th class="text-end" scope="col">Sum</th>
-                                <th class="text-center" scope="col">Old Debts</th>
+                                <th class="text-center" scope="col">Chart/Info</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,11 +32,13 @@
                                 <td class="text-end">{% sum_of cl.difference price tax %}</td>
                                 <td class="text-center">
                                     <!-- Check current user is client and has old debts -->
-                                    {% if client and cl.old_debts %}
-                                        <a href="{% url 'client debts' cl.pk %}"><i class="bi-info-square-fill text-warning"></i></a>
-                                    {% else %}
-                                        -
+                                    {% if client %}
+                                        <a href="{% url 'client details' cl.pk %}"><i class="bi bi-reception-3 text-info"></i></a>
+                                        {% if cl.old_debts %}
+                                            <a href="{% url 'client debts' cl.pk %}"><i class="bi-info-square-fill text-warning"></i></a>
+                                        {% endif %}
                                     {% endif %}
+
                                 </td>
                             </tr>
                         {% endfor %}
@@ -45,6 +47,12 @@
                         <tfoot>
                             <tr>
                                 <th colspan="8" class="text-end">*Тhe amounts are formed on the basis of kW price:€{{ price }} and fee:€{{ tax }}.</th>
+                            </tr>
+                            <tr>
+                                <th colspan="8" class="text-center">
+                                    Chasher: Nadya Ivanova <i class="bi-telephone"></i>0897654324.
+                                    Reporter: Tosho Toshev <i class="bi-telephone"></i> 0876765432.
+                                </th>
                             </tr>
                         </tfoot>
                         </table>

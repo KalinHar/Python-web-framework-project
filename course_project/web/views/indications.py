@@ -6,14 +6,15 @@ from course_project.web.models import Client, Taxes
 
 
 class IndicationsListView(PermissionRequiredMixin, views.ListView):
+    ROWS_PER_PAGE = 2
     permission_required = ('web.view_client',)
     model = Client
-    paginate_by = 2
+    paginate_by = ROWS_PER_PAGE
     template_name = 'indications.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        taxes = Taxes.objects.all()[0]
+        taxes = Taxes.objects.all().first()
         context['price'] = taxes.price
         context['tax'] = taxes.tax
         return context
