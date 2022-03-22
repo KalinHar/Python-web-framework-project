@@ -68,7 +68,7 @@ class AddAnnounceForm(forms.ModelForm):
 
     class Meta:
         model = Notice
-        fields = ('title','content', 'image',)
+        fields = ('title', 'content', 'image',)
 
 
 class EditAnnounceForm(forms.ModelForm):
