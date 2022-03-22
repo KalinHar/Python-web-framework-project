@@ -38,9 +38,8 @@ class RegisterFormView(views.CreateView):
         password1 = form.data['password1']
         password2 = form.data['password2']
         users = [u.username for u in UserModel.objects.all()]
-        if len(username) < 4:
-            message = 'Too short username, , must be at least 4 symbols!'
-        elif username in users:
+
+        if username in users:
             message = 'Username exist!'
         elif len(password1) < 8:
             message = 'Password must contains digit and letters, and be at least 8 symbols.'
