@@ -21,7 +21,7 @@ class ClientDetailsView(PermissionRequiredMixin, views.DetailView):
             if cl:
                 labels.append(arch.from_date)
                 data.append(cl['fields']['new'] - cl['fields']['old'])
-        if Archive.objects.count():
+        if labels:
             middle = max(data) / 2
             labels = list(map(lambda label: label.strftime("%d-%m-%Y"), labels))
             labels.reverse()
@@ -34,7 +34,7 @@ class ClientDetailsView(PermissionRequiredMixin, views.DetailView):
                     data_color.append(f'rgba(255,{int(255-(255 * (d / middle - 1)))},0,.3)')
 
             return [labels, data, data_color]
-        return [0,0,0]
+        return [0, 0, 0]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

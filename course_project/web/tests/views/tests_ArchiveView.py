@@ -6,8 +6,7 @@ from course_project.web.models import Client, Archive, Taxes
 from django.core import serializers
 
 
-class ClientInfoViewTest(TestCase):
-
+class ArchiveViewTest(TestCase):
     def create_user_and_client(self, username, password):
         user = User.objects.create_user(username=username, password=password)
         web_client = Client.objects.create(names='client - ' + username,
@@ -27,9 +26,9 @@ class ClientInfoViewTest(TestCase):
         Taxes.objects.create(price=0.5, tax=5)
         return Taxes.objects.all()
 
-    def test_client_info_template_and_context(self):
+    def setUp(self):
         permission = Permission.objects.get(codename='view_client')
-        user, web_client = self.create_user_and_client('testuser', 'aw3edcvb')
+        user, self.web_client = self.create_user_and_client('testuser', 'aw3edcvb')
         user.user_permissions.add(permission)
         self.client.login(username='testuser', password='aw3edcvb')
 
@@ -37,13 +36,17 @@ class ClientInfoViewTest(TestCase):
         taxes = self.get_taxes()
         self.add_to_archive(list(clients), list(taxes))
 
-        response = self.client.get(reverse('client details', kwargs={'pk': web_client.pk}))
+    def test_all_archive_template_and_context(self):
+        response = self.client.get(reverse('all archive'))
 
-        self.assertTemplateUsed(response, 'client-details.html')
-        self.assertEqual(response.context['announce_count'], 0)
-        self.assertIsNotNone(response.context['labels'])
-        self.assertEqual(response.context['data'], '[7]')
-        self.assertIsNotNone(response.context['data_color'])
-        self.assertEqual(response.context['object'], web_client)
+        self.assertTemplateUsed(response, 'archive.html')
+        self.assertFalse(response.context['only_one'])
 
+    def test_one_archive_view_template_and_context(self):
+        response = self.client.get(reverse('view archive', kwargs={'pk': self.web_client.pk}))
 
+        self.assertTemplateUsed(response, 'archive.html')
+        self.assertTrue(response.context['only_one'])
+        self.assertIsNotNone(response.context['from_date'])
+        self.assertIsNotNone(response.context['clients'])
+        self.assertIsNotNone(response.context['taxes'])
