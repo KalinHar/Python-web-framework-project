@@ -35,6 +35,7 @@ class ArchiveViewTest(TestCase):
         clients = Client.objects.all()
         taxes = self.get_taxes()
         self.add_to_archive(list(clients), list(taxes))
+        self.arch = Archive.objects.first()
 
     def test_all_archive_template_and_context(self):
         response = self.client.get(reverse('all archive'))
@@ -43,7 +44,7 @@ class ArchiveViewTest(TestCase):
         self.assertFalse(response.context['only_one'])
 
     def test_one_archive_view_template_and_context(self):
-        response = self.client.get(reverse('view archive', kwargs={'pk': self.web_client.pk}))
+        response = self.client.get(reverse('view archive', kwargs={'pk': self.arch.pk}))
 
         self.assertTemplateUsed(response, 'archive.html')
         self.assertTrue(response.context['only_one'])

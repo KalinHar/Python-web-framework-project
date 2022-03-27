@@ -132,7 +132,7 @@ class ReportingViewEditMasterTest(TestCase):
         self.web_clients = Client.objects.all()
 
     def test_reporting_edit_master_get(self):
-        response = self.client.get(reverse('edit master', kwargs={'pk': 1}))
+        response = self.client.get(reverse('edit master', kwargs={'pk': self.master.pk}))
 
         self.assertTemplateUsed(response, 'reporting/edit-master.html')
 

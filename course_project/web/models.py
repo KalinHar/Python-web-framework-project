@@ -1,23 +1,8 @@
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 
-
-def file_max_size(value):
-    max_size = 5
-    filesize = value.file.size
-    if filesize > max_size * 1024 * 1024:
-        raise ValidationError(f'Image file size is larger of {max_size}MB.')
-
-
-def phone_validator(value):
-    phone_min_length = 7
-    if len(value) <= phone_min_length:
-        raise ValidationError(f'Phone number must be longer {phone_min_length} digits.')
-    for ch in value:
-        if not ch.isdigit():
-            raise ValidationError('Phone number must contains only numbers.')
+from course_project.web.validators import phone_validator, file_max_size
 
 
 def get_username(self):

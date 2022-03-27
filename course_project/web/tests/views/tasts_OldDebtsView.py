@@ -9,11 +9,11 @@ class OldDebtsViewTest(TestCase):
     def create_user_and_client(self, username, password):
         user = User.objects.create_user(username=username, password=password)
         web_client = Client.objects.create(names='client - ' + username,
-                              phone='123456789',
-                              old=0,
-                              new=10,
-                              old_debts=1,
-                              username=User.objects.get(username=username))
+                                           phone='123456789',
+                                           old=0,
+                                           new=10,
+                                           old_debts=1,
+                                           username=User.objects.get(username=username))
         return user, web_client
 
     def setUp(self):
