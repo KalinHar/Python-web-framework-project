@@ -6,19 +6,19 @@
             <div class="col-12">
                 <div class="h-100 bg-light rounded p-4">
                     {% csrf_token %}
-                    {% if all_reported and master.reported %}
+                    {% if all_reported and master.reported and not report_done %}
                         <div class="row d-flex align-items-center justify-content-between mb-4">
                             <h6 class="col mb-0 text-warning">Warning: Before start reporting, add to archive current data!</h6>
                             <a href="{% url 'add archive' %}" class="col btn btn-sm btn-outline-warning">Add to Archive</a>
                         </div>
                     {% endif %}
-                    {% if report_master != 'done' %}
+                    {% if not all_reported %}
                         {% include 'reporting/report-clients.html' %}
                     {% endif %}
-                    {% if not master.reported and report_master != 'done'%}
+                    {% if not master.reported %}
                         {% include 'reporting/report-master.html' %}
                     {% endif %}
-                    {% if report_master == 'done' %}
+                    {% if report_done %}
                         <br/>
                         <div class="row d-flex align-items-center justify-content-between mb-4">
                             <h6 class="text-center text-success">All data successful reported.</h6>

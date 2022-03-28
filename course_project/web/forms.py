@@ -1,45 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
 
 from course_project.web.models import Client, Notice, Taxes
 
 UserModel = get_user_model()
-
-
-# class LoginForm(forms.ModelForm):
-#
-#     class Meta:
-#         model = UserModel
-#         fields = ('username', 'password',)
-#         widgets = {
-#             'username': forms.TextInput(
-#                 attrs={
-#                     'class': 'form-control',
-#                     'placeholder': 'Username',
-#                 }
-#             ),
-#             'password': forms.TextInput(
-#                 attrs={
-#                     'placeholder': 'Password',
-#                     'class': 'form-control',
-#                     'type': 'password',
-#                 }
-#             ),
-#         }
-#
-#
-# class RegisterForm(UserCreationForm):
-#
-#     def save(self, commit=True):
-#         user = super(RegisterForm, self).save(commit=False)
-#         if commit:
-#             user.save()
-#         return user
-#
-#     class Meta:
-#         model = UserModel
-#         fields = ("username", "password1", "password2")
 
 
 class EditClientForm(forms.ModelForm):

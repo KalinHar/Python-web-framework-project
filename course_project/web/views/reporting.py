@@ -14,8 +14,8 @@ def reporting_view(request):
     if not request.user.has_perm('web.add_archive',):
         return redirect('403')
     object_list = Client.objects.all()
-    taxes = Taxes.objects.all()[0]
-    master = Master.objects.all()[0]
+    taxes = Taxes.objects.first()
+    master = Master.objects.first()
 
     context = {
         'object_list': object_list,
@@ -27,21 +27,18 @@ def reporting_view(request):
         context['all_reported'] = False
 
     def report_master(m_units):
-        master = Master.objects.all()[0]
         if not m_units.isdecimal() or int(m_units) < master.new:
             messages.error(request, 'Incorrect units!')
             return
 
         master.old = master.new
-        master.new = m_units
+        master.new = int(m_units)
         master.reported = True
         master.save()
 
-        clients_kw = sum(cl.difference for cl in Client.objects.all())
-        master_kw = Master.objects.all()[0].difference
-        context['clients_kw'] = clients_kw
-        context['master_kw'] = master_kw
-        context['report_master'] = 'done'
+        context['clients_kw'] = sum(cl.difference for cl in object_list)
+        context['master_kw'] = master.difference
+        context['report_done'] = True
 
     def add_client_to_olddebts(client):
         new_debt = OldDebts()
@@ -60,7 +57,7 @@ def reporting_view(request):
             add_client_to_olddebts(client)
 
         client.old = client.new
-        client.new = client_units
+        client.new = int(client_units)
         client.reported = True
         client.paid = False
         client.save()
