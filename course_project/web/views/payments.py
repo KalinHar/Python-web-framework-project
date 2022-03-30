@@ -46,17 +46,21 @@ def pay_to(request, pk):
 
 
 class EditTaxesView(PermissionRequiredMixin, views.UpdateView):
-    TAXES_PK = 1
+    # TAXES_PK = 1
     permission_required = ('web.change_taxes',)
     model = Taxes
     form_class = UpdateTaxesForm
     template_name = 'payments/taxes.html'
     success_url = reverse_lazy('payments')
 
+    def get_object(self, queryset=None):  # This method replace passing 'pk' in templates, urls and context in view
+        obj = self.model.objects.first()
+        return obj
+
     def get_context_data(self, **kwargs):
         paid_clients = Client.objects.filter(paid=True).count()
         context = super().get_context_data(**kwargs)
-        context['pk'] = self.TAXES_PK
+        # context['pk'] = self.TAXES_PK
         context['paid_clients'] = paid_clients
         return context
 

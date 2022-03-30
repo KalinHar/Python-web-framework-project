@@ -29,7 +29,7 @@ urlpatterns = (
 
     path('payments/', PaymentsView.as_view(), name='payments'),
     path('payments/pay/<int:pk>/', pay_to, name='pay to'),
-    path('payments/edit/taxes/<int:pk>/', EditTaxesView.as_view(), name='taxes'),
+    path('payments/edit/taxes/', EditTaxesView.as_view(), name='taxes'),
     path('payments/edit/client/<int:pk>/', EditClientView.as_view(), name='edit client'),
     path('payments/olddebts/', OldDebtsView.as_view(), name='old debts'),
     path('payments/client/debts/<int:pk>/', ClientOldDebtsView.as_view(), name='client debts'),

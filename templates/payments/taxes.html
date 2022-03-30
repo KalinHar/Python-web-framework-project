@@ -17,19 +17,9 @@
                         {% endif %}
 
                         <span class="text-danger">{{ message }}</span>
-                        <form method="post" action="{% url 'taxes' pk %}">
+                        <form method="post" action="{% url 'taxes' %}">
                             {% csrf_token %}
                             {{ form }}
-{#                            {% for field in form %}#}
-{#                                <div class="form-floating mb-3">#}
-{#                                    <span class="row">#}
-{#                                        {{ field.label }}#}
-{#                                    </span>#}
-{#                                    <span class="row">#}
-{#                                        {{ field }}#}
-{#                                    </span>#}
-{#                                </div>#}
-{#                            {% endfor %}#}
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Update</button>
                         </form>
                     </div>
