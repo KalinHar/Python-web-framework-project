@@ -118,6 +118,10 @@ class EditMasterView(PermissionRequiredMixin, views.UpdateView):
     template_name = 'reporting/edit-master.html'
     success_url = reverse_lazy('indications')
 
+    def get_object(self, queryset=None):
+        obj = self.model.objects.first()
+        return obj
+
     def form_valid(self, form):
         old = form.data['old']
         new = form.data['new']

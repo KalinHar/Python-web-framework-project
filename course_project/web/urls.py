@@ -38,7 +38,7 @@ urlpatterns = (
     path('reporting/', reporting_view, name='reporting'),
     path('reporting/add/archive/', add_archive, name='add archive'),
     path('reporting/edit/units/', EditUnitsView.as_view(), name='edit units'),
-    path('reporting/edit/master/<int:pk>/', EditMasterView.as_view(), name='edit master'),
+    path('reporting/edit/master/', EditMasterView.as_view(), name='edit master'),
 
     path('archive/<int:pk>/', view_archive, name='view archive'),
     path('archive/all/', all_archive, name='all archive'),

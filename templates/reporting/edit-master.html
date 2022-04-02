@@ -10,7 +10,7 @@
                         </div>
                         <h5 class="text-warning">Warning: Entry the correct units.</h5>
                         <span class="text-danger">{{ message }}</span>
-                        <form method="post" action="{% url 'edit master' 1 %}">
+                        <form method="post" action="{% url 'edit master' %}">
                             {% csrf_token %}
                             {% for field in form %}
                                 <div class="form-floating mb-3">
