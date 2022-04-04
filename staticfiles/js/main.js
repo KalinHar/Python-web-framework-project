@@ -16,9 +16,9 @@
     }, 2000);
 
     //pay btn
-    $('.pay-btn').click(function () {
-        $('.pay-bth').addClass('disabled');
-    });
+    // $('.pay-btn').click(function () {
+    //     $('.pay-bth').addClass('disabled');
+    // });
 
     // Spinner
     var spinner = function () {

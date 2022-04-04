@@ -6,7 +6,7 @@ from course_project.web.models import Client, Taxes
 
 
 class IndicationsListView(PermissionRequiredMixin, views.ListView):
-    ROWS_PER_PAGE = 6
+    ROWS_PER_PAGE = 5
     permission_required = ('web.view_client',)
     model = Client
     paginate_by = ROWS_PER_PAGE
