@@ -8,16 +8,14 @@ from course_project.web.models import Archive
 def view_archive(request, pk):
     if not request.user.has_perm('web.view_client',):
         return redirect('403')
-    all = Archive.objects.all()
-    arch = next(x for x in all if x.pk == pk)
+    archive_list = Archive.objects.all()
+    arch = next(x for x in archive_list if x.pk == pk)
     from_date = arch.from_date
-    client_data = arch.data
-    tax_data = arch.taxes
-    clients = json.loads(client_data)
-    taxes = json.loads(tax_data)
+    clients = json.loads(arch.data)
+    taxes = json.loads(arch.taxes)
 
     context = {
-        'all': all,
+        'all': archive_list,
         'only_one': True,
         'from_date': from_date,
         'clients': clients,
@@ -29,9 +27,9 @@ def view_archive(request, pk):
 def all_archive(request):
     if not request.user.has_perm('web.view_client',):
         return redirect('403')
-    all = Archive.objects.all()
+    archive_list = Archive.objects.all()
     context = {
-        'all': all,
+        'all': archive_list,
         'only_one': False,
     }
     return render(request, 'archive.html', context)
