@@ -51,3 +51,7 @@ class ArchiveViewTest(TestCase):
         self.assertIsNotNone(response.context['from_date'])
         self.assertIsNotNone(response.context['clients'])
         self.assertIsNotNone(response.context['taxes'])
+
+    def test_export_archive(self):
+        response = self.client.get(reverse('download archive', kwargs={'pk': self.arch.pk}))
+        self.assertIsNotNone(response.content)
