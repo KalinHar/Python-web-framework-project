@@ -6,7 +6,7 @@ from django.urls import path
 #     view_archive, all_archive, reporting_view, ForbiddenPageView, ClientOldDebtsView, DeleteAnnounceView,\
 #     EditUnitsView, EditMasterView
 from course_project.web.views.announce import AnnounceView, AddAnnounceView, EditAnnounceView, DeleteAnnounceView
-from course_project.web.views.archive import view_archive, all_archive
+from course_project.web.views.archive import view_archive, all_archive, download_archive
 from course_project.web.views.auth import LoginFormView, RegisterFormView
 from course_project.web.views.client_info import ClientDetailsView
 from course_project.web.views.error_page import ForbiddenPageView
@@ -42,6 +42,7 @@ urlpatterns = (
 
     path('archive/<int:pk>/', view_archive, name='view archive'),
     path('archive/all/', all_archive, name='all archive'),
+    path('archive/download/<int:pk>/', download_archive, name='download archive'),
 
     path('auth/login/', LoginFormView.as_view(), name='login'),
     path('auth/register/', RegisterFormView.as_view(), name='register'),
