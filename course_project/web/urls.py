@@ -9,7 +9,7 @@ from course_project.web.views.announce import AnnounceView, AddAnnounceView, Edi
 from course_project.web.views.archive import view_archive, all_archive, download_archive
 from course_project.web.views.auth import LoginFormView, RegisterFormView
 from course_project.web.views.client_info import ClientDetailsView
-from course_project.web.views.error_page import ForbiddenPageView
+from course_project.web.views.error_page import ForbiddenPageView, NotExistPageView
 from course_project.web.views.home import HomeView
 from course_project.web.views.indications import IndicationsListView
 from course_project.web.views.old_debts import OldDebtsView, ClientOldDebtsView, clear_debt
