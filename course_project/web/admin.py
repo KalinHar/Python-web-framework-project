@@ -15,7 +15,7 @@ class TaxesAdmin(admin.ModelAdmin):
 
 @admin.register(Archive)
 class ArchiveAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('from_date',)
 
 
 @admin.register(Notice)
@@ -25,9 +25,9 @@ class NoticeAdmin(admin.ModelAdmin):
 
 @admin.register(OldDebts)
 class OldDebtsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('client', 'debts')
 
 
 @admin.register(Master)
 class MasterAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('old', 'new', 'reported')

@@ -57,6 +57,9 @@ class Client(models.Model):
     def difference(self):
         return self.new - self.old
 
+    def __str__(self):
+        return self.names
+
     class Meta:
         ordering = ('pk',)
 

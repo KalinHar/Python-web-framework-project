@@ -13,6 +13,7 @@ from course_project.web.models import Client, Taxes, OldDebts, Archive, Master
 def reporting_view(request):
     if not request.user.has_perm('web.add_archive',):
         return redirect('403')
+
     object_list = Client.objects.all()
     taxes = Taxes.objects.first()
     master = Master.objects.first()
@@ -80,6 +81,7 @@ def reporting_view(request):
 
 class EditUnitsView(PermissionRequiredMixin, views.TemplateView):
     permission_required = ('web.add_archive',)
+
     def get_client(self, pk):
         client = Client.objects.filter(pk=pk).first()
         if client:
