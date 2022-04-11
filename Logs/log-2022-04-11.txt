@@ -1,0 +1,39 @@
+INFO 2022-04-11 13:47:20,088 autoreload 17148 10388 Watching for file changes with StatReloader
+INFO 2022-04-11 13:47:24,164 basehttp 17148 17400 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 13:48:06,799 basehttp 17148 17400 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 13:48:31,075 autoreload 10860 16752 Watching for file changes with StatReloader
+INFO 2022-04-11 13:48:35,774 basehttp 10860 9768 "GET /announce/ HTTP/1.1" 200 19409
+INFO 2022-04-11 13:48:35,873 basehttp 10860 9768 "GET /media/media/notice_images/olimpi.jpg HTTP/1.1" 304 0
+INFO 2022-04-11 13:48:35,900 basehttp 10860 13364 "GET /media/media/notice_images/mount_vila.jpg HTTP/1.1" 304 0
+INFO 2022-04-11 13:49:25,659 basehttp 10860 9768 "GET /announce/34 HTTP/1.1" 200 6183
+Watching for file changes with StatReloader
+"GET /announce/34 HTTP/1.1" 200 6183
+"GET /static/lib/chart/chart.min.js HTTP/1.1" 304 0
+"GET /static/lib/easing/easing.min.js HTTP/1.1" 304 0
+"GET /static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js HTTP/1.1" 304 0
+"GET /static/js/main.js HTTP/1.1" 304 0
+"GET /static/lib/waypoints/waypoints.min.js HTTP/1.1" 304 0
+"GET /static/lib/owlcarousel/owl.carousel.min.js HTTP/1.1" 304 0
+"GET /static/lib/tempusdominus/js/moment.min.js HTTP/1.1" 304 0
+"GET /static/lib/tempusdominus/js/moment-timezone.min.js HTTP/1.1" 304 0
+"GET /announce/ HTTP/1.1" 200 19409
+"GET /announce/56 HTTP/1.1" 200 6183
+INFO 2022-04-11 13:53:11,638 autoreload 9664 10460 Watching for file changes with StatReloader
+INFO 2022-04-11 13:53:15,769 basehttp 9664 10028 "GET /announce/ HTTP/1.1" 200 19409
+INFO 2022-04-11 13:53:17,060 basehttp 9664 10028 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 13:55:01,982 autoreload 13364 5236 Watching for file changes with StatReloader
+INFO 2022-04-11 13:55:06,529 basehttp 13364 15552 "GET /announce/ HTTP/1.1" 200 19409
+INFO 2022-04-11 13:55:08,286 basehttp 13364 15552 "GET /auth/register/ HTTP/1.1" 200 7928
+INFO 2022-04-11 13:55:09,822 basehttp 13364 15552 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 13:55:39,385 autoreload 12616 1700 Watching for file changes with StatReloader
+INFO 2022-04-11 13:55:42,594 basehttp 12616 16512 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 13:57:37,289 basehttp 12616 16512 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 13:57:45,387 basehttp 12616 16512 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-11 13:57:45,467 basehttp 12616 16512 "GET / HTTP/1.1" 200 7023
+INFO 2022-04-11 13:57:50,476 basehttp 12616 16512 "GET /indications/ HTTP/1.1" 200 12746
+INFO 2022-04-11 13:58:09,144 basehttp 12616 16512 "GET /announce/ HTTP/1.1" 200 21076
+INFO 2022-04-11 13:58:12,021 basehttp 12616 16512 "GET /announce/edit/28/ HTTP/1.1" 200 8628
+INFO 2022-04-11 13:58:24,925 basehttp 12616 16512 "POST /announce/edit/28/ HTTP/1.1" 302 0
+INFO 2022-04-11 13:58:25,082 basehttp 12616 16512 "GET /announce/ HTTP/1.1" 200 21259
+INFO 2022-04-11 14:01:49,867 autoreload 12616 1700 D:\python_web\course_project\course_project\settings.py changed, reloading.
+INFO 2022-04-11 14:01:51,905 autoreload 12236 11156 Watching for file changes with StatReloader
