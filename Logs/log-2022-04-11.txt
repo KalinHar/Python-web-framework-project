@@ -37,3 +37,201 @@ INFO 2022-04-11 13:58:24,925 basehttp 12616 16512 "POST /announce/edit/28/ HTTP/
 INFO 2022-04-11 13:58:25,082 basehttp 12616 16512 "GET /announce/ HTTP/1.1" 200 21259
 INFO 2022-04-11 14:01:49,867 autoreload 12616 1700 D:\python_web\course_project\course_project\settings.py changed, reloading.
 INFO 2022-04-11 14:01:51,905 autoreload 12236 11156 Watching for file changes with StatReloader
+INFO 2022-04-11 14:05:20,211 autoreload 16684 10384 Watching for file changes with StatReloader
+INFO 2022-04-11 14:05:53,254 autoreload 9308 14492 Watching for file changes with StatReloader
+INFO 2022-04-11 14:05:59,696 basehttp 9308 10660 "GET /announce/ HTTP/1.1" 200 21074
+WARNING 2022-04-11 14:06:04,262 log 9308 10660 Not Found: /announce/56
+WARNING 2022-04-11 14:06:04,262 basehttp 9308 10660 "GET /announce/56 HTTP/1.1" 404 6809
+INFO 2022-04-11 14:07:30,039 autoreload 9308 14492 D:\python_web\course_project\course_project\settings.py changed, reloading.
+INFO 2022-04-11 14:07:31,289 autoreload 8320 9480 Watching for file changes with StatReloader
+INFO 2022-04-11 14:07:53,539 autoreload 6184 16312 Watching for file changes with StatReloader
+INFO 2022-04-11 14:08:05,580 basehttp 6184 12992 "GET /announce/66 HTTP/1.1" 200 6692
+INFO 2022-04-11 14:08:25,745 basehttp 6184 15712 "GET /announce/4 HTTP/1.1" 200 6692
+INFO 2022-04-11 14:08:34,233 basehttp 6184 9668 "GET /announce/edit/2/ HTTP/1.1" 200 8830
+INFO 2022-04-11 14:08:43,750 basehttp 6184 9668 "GET /announce/edit/20/ HTTP/1.1" 200 6692
+INFO 2022-04-11 14:08:52,889 basehttp 6184 11580 "GET /announce/edit/4/ HTTP/1.1" 200 6692
+INFO 2022-04-11 14:09:12,575 basehttp 6184 8292 "GET /announce/edit/3/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:09:12,663 basehttp 6184 8292 "GET /403/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:13:57,700 autoreload 17168 15316 Watching for file changes with StatReloader
+INFO 2022-04-11 14:14:01,880 basehttp 17168 10860 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:14:01,904 basehttp 17168 10860 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 14:14:17,017 basehttp 17168 10860 "GET /client-details/2/ HTTP/1.1" 302 0
+ERROR 2022-04-11 14:14:17,140 log 17168 10860 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registration/login.html
+INFO 2022-04-11 14:14:17,155 basehttp 17168 10860 "GET /accounts/login/?next=/client-details/2/ HTTP/1.1" 200 6184
+INFO 2022-04-11 14:14:39,300 basehttp 17168 15616 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 14:14:54,978 basehttp 17168 15616 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:14:55,054 basehttp 17168 15616 "GET / HTTP/1.1" 200 6434
+WARNING 2022-04-11 14:15:05,540 log 17168 15616 Forbidden (Permission denied): /client-details/2/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 108, in dispatch
+    return self.handle_no_permission()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 48, in handle_no_permission
+    raise PermissionDenied(self.get_permission_denied_message())
+django.core.exceptions.PermissionDenied
+WARNING 2022-04-11 14:15:05,556 basehttp 17168 15616 "GET /client-details/2/ HTTP/1.1" 403 135
+INFO 2022-04-11 14:17:29,035 autoreload 17168 15316 D:\python_web\course_project\course_project\web\middleware.py changed, reloading.
+INFO 2022-04-11 14:17:30,517 autoreload 11080 8196 Watching for file changes with StatReloader
+INFO 2022-04-11 14:17:38,379 basehttp 11080 10460 "GET /auth/login/ HTTP/1.1" 200 7446
+INFO 2022-04-11 14:17:55,647 basehttp 11080 10460 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:17:55,725 basehttp 11080 10460 "GET / HTTP/1.1" 200 6434
+INFO 2022-04-11 14:17:58,807 basehttp 11080 10460 "GET /announce/ HTTP/1.1" 200 20485
+WARNING 2022-04-11 14:18:05,471 log 11080 10460 Forbidden (Permission denied): /client-details/2/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 108, in dispatch
+    return self.handle_no_permission()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 48, in handle_no_permission
+    raise PermissionDenied(self.get_permission_denied_message())
+django.core.exceptions.PermissionDenied
+INFO 2022-04-11 14:18:05,488 basehttp 11080 10460 "GET /client-details/2/ HTTP/1.1" 200 6124
+WARNING 2022-04-11 14:18:33,002 log 11080 3256 Forbidden (Permission denied): /client-details/200/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 108, in dispatch
+    return self.handle_no_permission()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 48, in handle_no_permission
+    raise PermissionDenied(self.get_permission_denied_message())
+django.core.exceptions.PermissionDenied
+INFO 2022-04-11 14:18:33,020 basehttp 11080 3256 "GET /client-details/200/ HTTP/1.1" 200 6124
+INFO 2022-04-11 14:18:44,190 basehttp 11080 13048 "GET /client-details HTTP/1.1" 200 6103
+INFO 2022-04-11 14:20:48,237 autoreload 11080 8196 D:\python_web\course_project\course_project\web\views\payments.py changed, reloading.
+INFO 2022-04-11 14:20:49,527 autoreload 16252 11384 Watching for file changes with StatReloader
+INFO 2022-04-11 14:20:50,199 basehttp 16252 8292 "GET / HTTP/1.1" 200 6434
+ERROR 2022-04-11 14:21:04,369 log 16252 8292 Internal Server Error: /payments/pay/10/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\course_project\web\views\payments.py", line 41, in pay_to
+    client = Client.objects.get(pk=pk)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 496, in get
+    raise self.model.DoesNotExist(
+course_project.web.models.Client.DoesNotExist: Client matching query does not exist.
+INFO 2022-04-11 14:21:04,393 basehttp 16252 8292 "GET /payments/pay/10/ HTTP/1.1" 200 6104
+INFO 2022-04-11 14:21:13,120 basehttp 16252 10764 "GET /payments/pay/2/ HTTP/1.1" 302 0
+WARNING 2022-04-11 14:21:13,227 log 16252 10764 Forbidden (Permission denied): /payments/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 108, in dispatch
+    return self.handle_no_permission()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 48, in handle_no_permission
+    raise PermissionDenied(self.get_permission_denied_message())
+django.core.exceptions.PermissionDenied
+INFO 2022-04-11 14:21:13,243 basehttp 16252 10764 "GET /payments/ HTTP/1.1" 200 6303
+INFO 2022-04-11 14:21:25,425 basehttp 16252 14452 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:21:25,441 basehttp 16252 14452 "GET / HTTP/1.1" 200 6693
+INFO 2022-04-11 14:21:29,794 basehttp 16252 14452 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 14:21:43,168 basehttp 16252 14452 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:21:43,247 basehttp 16252 14452 "GET / HTTP/1.1" 200 7023
+INFO 2022-04-11 14:21:45,038 basehttp 16252 14452 "GET /indications/ HTTP/1.1" 200 12746
+INFO 2022-04-11 14:22:27,041 basehttp 16252 14452 "GET /client-details/2/ HTTP/1.1" 200 7693
+INFO 2022-04-11 14:22:43,060 basehttp 16252 14452 "GET /announce/ HTTP/1.1" 200 21074
+INFO 2022-04-11 14:22:53,737 basehttp 16252 14452 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:22:53,754 basehttp 16252 14452 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 14:23:02,336 autoreload 16252 11384 D:\python_web\course_project\course_project\web\views\payments.py changed, reloading.
+INFO 2022-04-11 14:23:03,898 autoreload 11252 9668 Watching for file changes with StatReloader
+INFO 2022-04-11 14:24:07,501 basehttp 11252 7424 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 14:24:19,239 basehttp 11252 7424 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:24:19,311 basehttp 11252 7424 "GET / HTTP/1.1" 200 7858
+INFO 2022-04-11 14:24:25,928 basehttp 11252 7424 "GET /payments/ HTTP/1.1" 200 18707
+INFO 2022-04-11 14:24:31,452 basehttp 11252 7424 "GET /payments/edit/client/2/ HTTP/1.1" 200 9330
+INFO 2022-04-11 14:24:37,622 basehttp 11252 7424 "POST /payments/edit/client/2/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:24:37,753 basehttp 11252 7424 "GET /payments/ HTTP/1.1" 200 18953
+INFO 2022-04-11 14:24:41,145 basehttp 11252 7424 "GET /payments/edit/client/7/ HTTP/1.1" 200 9333
+INFO 2022-04-11 14:24:48,494 basehttp 11252 7424 "GET /indications/ HTTP/1.1" 200 13581
+INFO 2022-04-11 14:24:50,602 basehttp 11252 7424 "GET /indications/?page=2 HTTP/1.1" 200 11134
+INFO 2022-04-11 14:24:53,563 basehttp 11252 7424 "GET /indications/?page=1 HTTP/1.1" 200 13581
+INFO 2022-04-11 14:24:58,815 basehttp 11252 7424 "GET /announce/ HTTP/1.1" 200 21397
+INFO 2022-04-11 14:24:59,905 basehttp 11252 7424 "GET /indications/ HTTP/1.1" 200 13581
+INFO 2022-04-11 14:25:05,151 basehttp 11252 7424 "GET /payments/edit/taxes/ HTTP/1.1" 200 8703
+INFO 2022-04-11 14:25:20,800 basehttp 11252 7424 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:25:20,814 basehttp 11252 7424 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 14:28:20,520 basehttp 11252 9424 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-11 14:28:27,678 basehttp 11252 9424 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:28:27,761 basehttp 11252 9424 "GET / HTTP/1.1" 200 7023
+INFO 2022-04-11 14:28:38,739 basehttp 11252 9424 "GET /payments/pay/2/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:28:38,820 basehttp 11252 9424 "GET /403/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:28:43,155 basehttp 11252 9424 "GET /indications/ HTTP/1.1" 200 12746
+WARNING 2022-04-11 14:29:11,991 log 11252 9424 Forbidden (Permission denied): /payments/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 108, in dispatch
+    return self.handle_no_permission()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\mixins.py", line 48, in handle_no_permission
+    raise PermissionDenied(self.get_permission_denied_message())
+django.core.exceptions.PermissionDenied
+INFO 2022-04-11 14:29:12,011 basehttp 11252 9424 "GET /payments/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:29:28,892 basehttp 11252 8080 "GET /payments/pay/22/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:29:28,984 basehttp 11252 4480 "GET /403/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:29:55,782 basehttp 11252 4480 "GET /payments/pay/10/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:29:55,867 basehttp 11252 4480 "GET /403/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:30:05,923 basehttp 11252 4480 "GET /reporting/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:30:06,003 basehttp 11252 4480 "GET /403/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:30:25,016 basehttp 11252 4480 "GET /announce/edit/10/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:30:25,091 basehttp 11252 4480 "GET /403/ HTTP/1.1" 200 6713
+INFO 2022-04-11 14:30:39,672 basehttp 11252 4480 "GET /announce/2/ HTTP/1.1" 200 6692
+INFO 2022-04-11 14:31:03,519 basehttp 11252 8080 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:31:03,536 basehttp 11252 8080 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-11 14:31:15,770 basehttp 11252 8080 "GET /indications/ HTTP/1.1" 302 0
+ERROR 2022-04-11 14:31:15,834 log 11252 8080 Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registration/login.html
+INFO 2022-04-11 14:31:15,840 basehttp 11252 8080 "GET /accounts/login/?next=/indications/ HTTP/1.1" 200 6184
+INFO 2022-04-11 14:31:35,773 basehttp 11252 10988 "GET /announce/ HTTP/1.1" 200 19407
+INFO 2022-04-11 14:31:44,733 basehttp 11252 10988 "GET /announce/edit/2/ HTTP/1.1" 302 0
+INFO 2022-04-11 14:31:44,747 basehttp 11252 10988 "GET /403/ HTTP/1.1" 200 6204
