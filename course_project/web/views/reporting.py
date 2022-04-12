@@ -87,7 +87,6 @@ class EditUnitsView(PermissionRequiredMixin, views.TemplateView):
         if client:
             context = self.get_context_data()
             context['client'] = client
-            context['client_pk'] = client.pk
             return context
         messages.error(self.request, 'Incorrect client number!')
 

@@ -1,15 +1,10 @@
 from django.urls import path
 
-# from course_project.web.view import HomeView, LoginFormView, RegisterFormView, \
-#     IndicationsListView, AnnounceView, PaymentsView, EditTaxesView, OldDebtsView, \
-#     pay_to, client_debts, clear_debt, EditClientView, AddAnnounceView, EditAnnounceView, delete_announce, add_archive, \
-#     view_archive, all_archive, reporting_view, ForbiddenPageView, ClientOldDebtsView, DeleteAnnounceView,\
-#     EditUnitsView, EditMasterView
 from course_project.web.views.announce import AnnounceView, AddAnnounceView, EditAnnounceView, DeleteAnnounceView
 from course_project.web.views.archive import view_archive, all_archive, download_archive
 from course_project.web.views.auth import LoginFormView, RegisterFormView
 from course_project.web.views.client_info import ClientDetailsView
-from course_project.web.views.error_page import ForbiddenPageView, NotExistPageView
+from course_project.web.views.error_page import ForbiddenPageView
 from course_project.web.views.home import HomeView
 from course_project.web.views.indications import IndicationsListView
 from course_project.web.views.old_debts import OldDebtsView, ClientOldDebtsView, clear_debt
