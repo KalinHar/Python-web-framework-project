@@ -22,15 +22,15 @@ class ClientDetailsView(PermissionRequiredMixin, views.DetailView):
                 labels.append(arch.from_date)
                 data.append(cl['fields']['new'] - cl['fields']['old'])
         if labels:
-            middle = max(data) / 2
+            middle = max(data) / 2  # use middle to insert yellow in the middle from green to red
             labels = list(map(lambda label: label.strftime("%d-%m-%Y"), labels))
             labels.reverse()
             data.reverse()
             for d in data:
-                # data_color.append(f'rgba(255,{int(255 - (255 * d / max(data)))},0,.4)')
-                if d < middle:
+                # data_color.append(f'rgba(255,{int(255 - (255 * d / max(data)))},0,.4)')  #  this is without yellow
+                if d < middle:                                              # data color increase from green to yellow
                     data_color.append(f'rgba({int(255 * d / middle)},255,0,.3)')
-                else:
+                else:                                                       # data color increase from yellow to red
                     data_color.append(f'rgba(255,{int(255-(255 * (d / middle - 1)))},0,.3)')
 
             return [labels, data, data_color]

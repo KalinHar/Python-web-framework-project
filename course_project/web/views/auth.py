@@ -42,7 +42,7 @@ class RegisterFormView(views.CreateView):
         if username in users:
             message = 'Username exist!'
         elif len(password1) < 8:
-            message = 'Password must contains digit and letters, and be at least 8 symbols.'
+            message = 'Password must be at least 8 symbols.'
         elif password1 != password2:
             message = "Passwords don't match."
         else:

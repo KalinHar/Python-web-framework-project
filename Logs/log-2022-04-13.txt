@@ -242,3 +242,16 @@ INFO 2022-04-13 08:14:57,064 basehttp 4820 6976 "GET /indications/ HTTP/1.1" 200
 INFO 2022-04-13 08:14:59,442 basehttp 4820 6976 "GET /client-details/2/ HTTP/1.1" 200 7830
 INFO 2022-04-13 08:15:28,247 basehttp 4820 6976 "GET /accounts/logout/ HTTP/1.1" 302 0
 INFO 2022-04-13 08:15:28,275 basehttp 4820 6976 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-13 08:49:22,949 autoreload 9632 10844 Watching for file changes with StatReloader
+INFO 2022-04-13 08:49:51,169 basehttp 9632 16640 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-13 08:49:53,342 basehttp 9632 16640 - Broken pipe from ('127.0.0.1', 56836)
+
+INFO 2022-04-13 08:49:57,487 basehttp 9632 11200 "GET /auth/register/ HTTP/1.1" 200 7928
+INFO 2022-04-13 08:50:19,615 basehttp 9632 11200 "POST /auth/register/ HTTP/1.1" 200 7976
+INFO 2022-04-13 08:50:41,066 basehttp 9632 11200 "POST /auth/register/ HTTP/1.1" 302 0
+INFO 2022-04-13 08:50:41,202 basehttp 9632 11200 "GET / HTTP/1.1" 200 6432
+INFO 2022-04-13 08:51:02,073 basehttp 9632 11200 "GET /announce/ HTTP/1.1" 200 19457
+INFO 2022-04-13 08:51:02,236 basehttp 9632 11200 - Broken pipe from ('127.0.0.1', 56860)
+
+INFO 2022-04-13 08:51:02,320 basehttp 9632 12236 - Broken pipe from ('127.0.0.1', 56871)
+
