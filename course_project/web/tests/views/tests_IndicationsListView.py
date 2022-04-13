@@ -38,11 +38,11 @@ class IndicationsListViewTests(TestCase):
         self.assertEquals(response.context['tax'], 10)
         self.assertEquals(response.context['object_list'][0], self.web_client[0])
 
-    def test_get__not_auth_user__expect_fail(self):
+    def test_get__not_auth_user__expect_200(self):
         self.client.login(username='testuser', password='aw3edcvb')
         response = self.client.get(reverse('indications'))
 
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 200)
         self.assertRaises(AssertionError)
 
 

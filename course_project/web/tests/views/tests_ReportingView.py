@@ -132,18 +132,18 @@ class ReportingViewEditMasterTest(TestCase):
         self.web_clients = Client.objects.all()
 
     def test_reporting_edit_master_get(self):
-        response = self.client.get(reverse('edit master', kwargs={'pk': self.master.pk}))
+        response = self.client.get(reverse('edit master'))
 
         self.assertTemplateUsed(response, 'reporting/edit-master.html')
 
     def test_reporting_edit_master_post_incorrect_units(self):
-        self.client.post(reverse('edit master', kwargs={'pk': self.master.pk}), data={'old': 300, 'new': 200})
+        self.client.post(reverse('edit master'), data={'old': 300, 'new': 200})
 
         self.master.refresh_from_db()
         self.assertEqual(self.master.new, 300)
 
     def test_reporting_edit_master_post_correct_units(self):
-        self.client.post(reverse('edit master', kwargs={'pk': self.master.pk}), data={'old': 300, 'new': 400})
+        self.client.post(reverse('edit master'), data={'old': 300, 'new': 400})
 
         self.master.refresh_from_db()
         self.assertEqual(self.master.new, 400)

@@ -163,3 +163,238 @@ INFO 2022-04-12 09:05:57,314 basehttp 10204 14772 "GET / HTTP/1.1" 200 6514
 INFO 2022-04-12 09:06:04,591 basehttp 10204 14772 "GET /announce/ HTTP/1.1" 200 19407
 INFO 2022-04-12 09:06:55,792 basehttp 10204 14772 "GET / HTTP/1.1" 200 6514
 INFO 2022-04-12 09:09:39,160 autoreload 3596 15628 Watching for file changes with StatReloader
+INFO 2022-04-12 14:12:52,610 autoreload 5316 13656 Watching for file changes with StatReloader
+INFO 2022-04-12 14:13:00,767 basehttp 5316 13332 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-12 14:13:04,877 basehttp 5316 13332 - Broken pipe from ('127.0.0.1', 64964)
+
+INFO 2022-04-12 14:13:07,652 basehttp 5316 15504 "GET / HTTP/1.1" 200 6514
+INFO 2022-04-12 14:13:09,330 basehttp 5316 15504 "GET /auth/login/ HTTP/1.1" 200 7526
+INFO 2022-04-12 14:13:17,694 basehttp 5316 15504 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-12 14:13:17,867 basehttp 5316 15504 "GET / HTTP/1.1" 200 7876
+ERROR 2022-04-12 14:13:20,818 log 5316 15504 Internal Server Error: /reporting/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 187, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\asgiref\sync.py", line 204, in __call__
+    return call_result.result()
+  File "C:\Users\HP HOME\AppData\Local\Programs\Python\Python38-32\lib\concurrent\futures\_base.py", line 432, in result
+    return self.__get_result()
+  File "C:\Users\HP HOME\AppData\Local\Programs\Python\Python38-32\lib\concurrent\futures\_base.py", line 388, in __get_result
+    raise self._exception
+  File "D:\python_web\course_project\venv\lib\site-packages\asgiref\sync.py", line 270, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "D:\python_web\course_project\course_project\web\views\reporting.py", line 15, in reporting_view
+    if not request.user.has_perm('web.add_archive',):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\functional.py", line 258, in inner
+    self._setup()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\functional.py", line 398, in _setup
+    self._wrapped = self._setupfunc()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\__init__.py", line 191, in get_user
+    user_id = _get_user_session_key(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 53, in __getitem__
+    return self._session[key]
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 192, in _get_session
+    self._session_cache = self.load()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 42, in load
+    s = self._get_session_from_db()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1359, in execute_sql
+    cursor = self.connection.cursor()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2022-04-12 14:13:20,882 basehttp 5316 15504 "GET /reporting/ HTTP/1.1" 200 7546
+INFO 2022-04-12 14:15:45,384 autoreload 5316 13656 D:\python_web\course_project\course_project\web\views\reporting.py changed, reloading.
+INFO 2022-04-12 14:15:47,763 autoreload 17024 12608 Watching for file changes with StatReloader
+INFO 2022-04-12 14:15:48,400 basehttp 17024 2060 "GET / HTTP/1.1" 200 7876
+ERROR 2022-04-12 14:15:50,315 log 17024 2060 Internal Server Error: /reporting/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 187, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\asgiref\sync.py", line 204, in __call__
+    return call_result.result()
+  File "C:\Users\HP HOME\AppData\Local\Programs\Python\Python38-32\lib\concurrent\futures\_base.py", line 432, in result
+    return self.__get_result()
+  File "C:\Users\HP HOME\AppData\Local\Programs\Python\Python38-32\lib\concurrent\futures\_base.py", line 388, in __get_result
+    raise self._exception
+  File "D:\python_web\course_project\venv\lib\site-packages\asgiref\sync.py", line 270, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "D:\python_web\course_project\course_project\web\views\reporting.py", line 15, in reporting_view
+    if not request.user.has_perm('web.add_archive',):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\functional.py", line 258, in inner
+    self._setup()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\functional.py", line 398, in _setup
+    self._wrapped = self._setupfunc()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\__init__.py", line 191, in get_user
+    user_id = _get_user_session_key(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 53, in __getitem__
+    return self._session[key]
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 192, in _get_session
+    self._session_cache = self.load()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 42, in load
+    s = self._get_session_from_db()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1359, in execute_sql
+    cursor = self.connection.cursor()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2022-04-12 14:15:50,357 basehttp 17024 2060 "GET /reporting/ HTTP/1.1" 200 7546
+INFO 2022-04-12 14:15:54,618 basehttp 17024 13936 "GET / HTTP/1.1" 200 7876
+INFO 2022-04-12 14:15:55,540 basehttp 17024 13936 "GET / HTTP/1.1" 200 7876
+INFO 2022-04-12 14:15:55,629 basehttp 17024 13936 "GET /static/lib/easing/easing.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,630 basehttp 17024 14512 "GET /static/lib/chart/chart.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,638 basehttp 17024 14512 "GET /static/lib/owlcarousel/owl.carousel.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,640 basehttp 17024 13936 "GET /static/lib/tempusdominus/js/moment.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,662 basehttp 17024 1764 "GET /static/lib/waypoints/waypoints.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,694 basehttp 17024 8824 "GET /static/lib/tempusdominus/js/moment-timezone.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,696 basehttp 17024 3416 "GET /static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js HTTP/1.1" 304 0
+INFO 2022-04-12 14:15:55,713 basehttp 17024 11856 "GET /static/js/main.js HTTP/1.1" 200 1500
+ERROR 2022-04-12 14:15:57,440 log 17024 13936 Internal Server Error: /reporting/
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 187, in _get_session
+    return self._session_cache
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\asgiref\sync.py", line 204, in __call__
+    return call_result.result()
+  File "C:\Users\HP HOME\AppData\Local\Programs\Python\Python38-32\lib\concurrent\futures\_base.py", line 432, in result
+    return self.__get_result()
+  File "C:\Users\HP HOME\AppData\Local\Programs\Python\Python38-32\lib\concurrent\futures\_base.py", line 388, in __get_result
+    raise self._exception
+  File "D:\python_web\course_project\venv\lib\site-packages\asgiref\sync.py", line 270, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+  File "D:\python_web\course_project\course_project\web\views\reporting.py", line 15, in reporting_view
+    if not request.user.has_perm('web.add_archive',):
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\functional.py", line 258, in inner
+    self._setup()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\functional.py", line 398, in _setup
+    self._wrapped = self._setupfunc()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\middleware.py", line 25, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\middleware.py", line 11, in get_user
+    request._cached_user = auth.get_user(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\__init__.py", line 191, in get_user
+    user_id = _get_user_session_key(request)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\auth\__init__.py", line 60, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 53, in __getitem__
+    return self._session[key]
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\base.py", line 192, in _get_session
+    self._session_cache = self.load()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 42, in load
+    s = self._get_session_from_db()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\contrib\sessions\backends\db.py", line 32, in _get_session_from_db
+    return self.model.objects.get(
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 492, in get
+    num = len(clone)
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 302, in __len__
+    self._fetch_all()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+  File "D:\python_web\course_project\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1359, in execute_sql
+    cursor = self.connection.cursor()
+  File "D:\python_web\course_project\venv\lib\site-packages\django\utils\asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+INFO 2022-04-12 14:15:57,482 basehttp 17024 13936 "GET /reporting/ HTTP/1.1" 200 7546
+INFO 2022-04-12 14:16:47,743 autoreload 17024 12608 D:\python_web\course_project\course_project\web\views\reporting.py changed, reloading.
+INFO 2022-04-12 14:16:50,352 autoreload 14060 4612 Watching for file changes with StatReloader
+INFO 2022-04-12 14:16:51,222 basehttp 14060 12384 "GET /reporting/ HTTP/1.1" 200 7810
+INFO 2022-04-12 14:16:53,679 basehttp 14060 12384 "GET / HTTP/1.1" 200 7876
+INFO 2022-04-12 14:17:18,159 basehttp 14060 12384 "GET /archive/all/ HTTP/1.1" 200 9418
+INFO 2022-04-12 14:17:19,989 basehttp 14060 12384 "GET /indications/ HTTP/1.1" 200 13773
+INFO 2022-04-12 14:17:56,715 basehttp 14060 12384 "GET /reporting/ HTTP/1.1" 200 7810
+INFO 2022-04-12 14:18:57,621 basehttp 14060 12384 "GET / HTTP/1.1" 200 7876
+INFO 2022-04-12 14:18:57,974 basehttp 14060 12384 "GET /static/lib/owlcarousel/assets/owl.carousel.min.css HTTP/1.1" 200 2936
+INFO 2022-04-12 14:18:58,043 basehttp 14060 12384 "GET /static/lib/waypoints/waypoints.min.js HTTP/1.1" 200 9028
+INFO 2022-04-12 14:18:58,048 basehttp 14060 13204 "GET /static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css HTTP/1.1" 200 9060
+INFO 2022-04-12 14:18:58,055 basehttp 14060 11548 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 164309
+INFO 2022-04-12 14:18:58,147 basehttp 14060 7432 "GET /static/css/style.css HTTP/1.1" 200 5961
+INFO 2022-04-12 14:18:58,150 basehttp 14060 11548 "GET /static/lib/tempusdominus/js/moment-timezone.min.js HTTP/1.1" 200 32832
+INFO 2022-04-12 14:18:58,157 basehttp 14060 11548 "GET /static/js/main.js HTTP/1.1" 200 1500
+INFO 2022-04-12 14:18:58,160 basehttp 14060 12384 "GET /static/lib/owlcarousel/owl.carousel.min.js HTTP/1.1" 200 42766
+INFO 2022-04-12 14:18:58,259 basehttp 14060 2952 "GET /static/lib/easing/easing.min.js HTTP/1.1" 200 2302
+INFO 2022-04-12 14:18:58,275 basehttp 14060 7432 "GET /static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js HTTP/1.1" 200 56879
+INFO 2022-04-12 14:18:58,352 basehttp 14060 13424 "GET /static/lib/chart/chart.min.js HTTP/1.1" 200 194890
+INFO 2022-04-12 14:18:58,378 basehttp 14060 13204 "GET /static/lib/tempusdominus/js/moment.min.js HTTP/1.1" 200 326657
+INFO 2022-04-12 14:19:01,487 basehttp 14060 13204 "GET /static/img/favicon.ico HTTP/1.1" 200 15406
+INFO 2022-04-12 14:19:06,142 basehttp 14060 13204 "GET /reporting/ HTTP/1.1" 200 7810
+INFO 2022-04-12 14:19:06,427 basehttp 14060 7432 "GET /static/css/style.css HTTP/1.1" 200 5961
+INFO 2022-04-12 14:19:06,431 basehttp 14060 13424 "GET /static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css HTTP/1.1" 200 9060
+INFO 2022-04-12 14:19:06,438 basehttp 14060 11548 "GET /static/css/bootstrap.min.css HTTP/1.1" 200 164309
+INFO 2022-04-12 14:19:06,447 basehttp 14060 13204 "GET /static/lib/owlcarousel/assets/owl.carousel.min.css HTTP/1.1" 200 2936
+INFO 2022-04-12 14:19:06,451 basehttp 14060 12384 "GET /static/lib/easing/easing.min.js HTTP/1.1" 200 2302
+INFO 2022-04-12 14:19:06,463 basehttp 14060 12384 "GET /static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js HTTP/1.1" 200 56879
+INFO 2022-04-12 14:19:06,470 basehttp 14060 13424 "GET /static/lib/owlcarousel/owl.carousel.min.js HTTP/1.1" 200 42766
+INFO 2022-04-12 14:19:06,474 basehttp 14060 7432 "GET /static/lib/waypoints/waypoints.min.js HTTP/1.1" 200 9028
+INFO 2022-04-12 14:19:06,477 basehttp 14060 13204 "GET /static/lib/tempusdominus/js/moment-timezone.min.js HTTP/1.1" 200 32832
+INFO 2022-04-12 14:19:06,479 basehttp 14060 2952 "GET /static/lib/chart/chart.min.js HTTP/1.1" 200 194890
+INFO 2022-04-12 14:19:06,480 basehttp 14060 12384 "GET /static/js/main.js HTTP/1.1" 200 1500
+INFO 2022-04-12 14:19:06,482 basehttp 14060 11548 "GET /static/lib/tempusdominus/js/moment.min.js HTTP/1.1" 200 326657
+INFO 2022-04-12 14:19:07,348 basehttp 14060 13204 "GET /static/img/favicon.ico HTTP/1.1" 200 15406
+INFO 2022-04-12 14:22:17,511 autoreload 14060 4612 D:\python_web\course_project\course_project\web\views\reporting.py changed, reloading.
+INFO 2022-04-12 14:22:19,961 autoreload 5552 16036 Watching for file changes with StatReloader

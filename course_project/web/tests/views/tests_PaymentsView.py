@@ -49,13 +49,13 @@ class PaymentsViewTest(TestCase):
         self.assertRedirects(response, '/payments/')
 
     def test_get_edit_taxes_and_context(self):
-        response = self.client.get(reverse('taxes', kwargs={'pk': self.taxes[0].pk}))
+        response = self.client.get(reverse('taxes'))
 
         self.assertEqual(response.context['paid_clients'], 0)
         self.assertEqual(response.status_code, 200)
 
     def test_post_edit_taxes(self):
-        response = self.client.post(reverse('taxes', kwargs={'pk': self.taxes[0].pk}), data={'price':0.2, 'tax':2})
+        response = self.client.post(reverse('taxes'), data={'price':0.2, 'tax':2})
         self.taxes[0].refresh_from_db()
 
         self.assertEqual(self.taxes[0].price, 0.2)
