@@ -10,7 +10,7 @@ class IndicationsListView(PermissionRequiredMixin, views.ListView):
     permission_required = ('web.view_client',)
     model = Client
     paginate_by = ROWS_PER_PAGE
-    template_name = 'indications.html'
+    template_name = 'indications-info/indications.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

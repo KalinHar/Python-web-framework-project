@@ -9,7 +9,7 @@ from course_project.web.models import Client, Archive, Notice
 class ClientDetailsView(PermissionRequiredMixin, views.DetailView):
     permission_required = ('web.view_client',)
     model = Client
-    template_name = 'client-details.html'
+    template_name = 'indications-info/client-details.html'
 
     def get_archive_data(self):
         labels = []
