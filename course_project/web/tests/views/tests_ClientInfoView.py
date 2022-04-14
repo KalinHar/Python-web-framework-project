@@ -39,7 +39,7 @@ class ClientInfoViewTest(TestCase):
 
         response = self.client.get(reverse('client details', kwargs={'pk': web_client.pk}))
 
-        self.assertTemplateUsed(response, 'client-details.html')
+        self.assertTemplateUsed(response, 'indications-info/client-details.html')
         self.assertEqual(response.context['announce_count'], 0)
         self.assertIsNotNone(response.context['labels'])
         self.assertEqual(response.context['data'], '[7]')

@@ -32,7 +32,7 @@ class IndicationsListViewTests(TestCase):
         response = self.client.get(reverse('indications'))
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'indications.html')
+        self.assertTemplateUsed(response, 'indications-info/indications.html')
 
         self.assertEquals(response.context['price'], 0.5)
         self.assertEquals(response.context['tax'], 10)

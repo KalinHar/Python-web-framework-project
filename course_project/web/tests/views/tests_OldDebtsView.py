@@ -5,7 +5,7 @@ from django.urls import reverse
 from course_project.web.models import Client, OldDebts, Taxes, Master
 
 
-class OldDebtsViewTest(TestCase):
+class OldDebtsViewTests(TestCase):
     def create_user_and_client(self, username, password):
         user = User.objects.create_user(username=username, password=password)
         web_client = Client.objects.create(names='client - ' + username,

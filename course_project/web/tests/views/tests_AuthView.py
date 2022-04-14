@@ -50,7 +50,7 @@ class RegisterFormViewTest(TestCase):
 
         users = User.objects.all()
         self.assertEqual(users.count(), 0)
-        self.assertEqual(response.context['message'], 'Password must contains digit and letters, and be at least 8 symbols.')
+        self.assertEqual(response.context['message'], 'Password must be at least 8 symbols.')
 
 
     def test_user_exist_register(self):
