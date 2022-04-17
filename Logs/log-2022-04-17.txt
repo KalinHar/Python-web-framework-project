@@ -1,0 +1,45 @@
+INFO 2022-04-17 08:23:59,591 autoreload 10080 13856 Watching for file changes with StatReloader
+INFO 2022-04-17 08:24:13,364 basehttp 10080 13876 "GET / HTTP/1.1" 200 7035
+INFO 2022-04-17 08:24:14,332 basehttp 10080 5248 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:24:14,523 basehttp 10080 13876 - Broken pipe from ('127.0.0.1', 62075)
+
+INFO 2022-04-17 08:24:18,173 basehttp 10080 12396 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:24:18,204 basehttp 10080 11204 "GET / HTTP/1.1" 200 6562
+INFO 2022-04-17 08:25:38,940 basehttp 10080 11204 "GET /auth/login/ HTTP/1.1" 200 7602
+INFO 2022-04-17 08:25:43,064 basehttp 10080 11204 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:25:43,209 basehttp 10080 11204 "GET / HTTP/1.1" 200 7034
+INFO 2022-04-17 08:26:53,837 basehttp 10080 11204 "GET / HTTP/1.1" 200 7068
+INFO 2022-04-17 08:26:53,982 basehttp 10080 11204 "GET /static/lib/chart/chart.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:53,994 basehttp 10080 11204 "GET /static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:53,997 basehttp 10080 11204 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:54,056 basehttp 10080 3220 "GET /static/lib/waypoints/waypoints.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:54,061 basehttp 10080 9740 "GET /static/lib/easing/easing.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:54,067 basehttp 10080 9288 "GET /static/lib/tempusdominus/js/moment-timezone.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:54,099 basehttp 10080 3240 "GET /static/lib/tempusdominus/js/moment.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:54,102 basehttp 10080 12444 "GET /static/lib/owlcarousel/owl.carousel.min.js HTTP/1.1" 304 0
+INFO 2022-04-17 08:26:56,657 basehttp 10080 11204 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:26:56,690 basehttp 10080 11204 "GET / HTTP/1.1" 200 6583
+INFO 2022-04-17 08:27:51,448 basehttp 10080 11204 "GET /auth/login/ HTTP/1.1" 200 7589
+INFO 2022-04-17 08:27:56,804 basehttp 10080 11204 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:27:56,947 basehttp 10080 11204 "GET / HTTP/1.1" 200 7068
+INFO 2022-04-17 08:29:27,087 basehttp 10080 10796 "GET / HTTP/1.1" 200 7068
+INFO 2022-04-17 08:29:28,172 basehttp 10080 10796 - Broken pipe from ('127.0.0.1', 62186)
+
+INFO 2022-04-17 08:29:30,502 basehttp 10080 6736 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:29:30,534 basehttp 10080 6736 "GET / HTTP/1.1" 200 6583
+INFO 2022-04-17 08:29:32,492 basehttp 10080 6736 "GET /auth/login/ HTTP/1.1" 200 7589
+INFO 2022-04-17 08:29:36,568 basehttp 10080 6736 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:29:36,737 basehttp 10080 6736 "GET / HTTP/1.1" 200 7921
+INFO 2022-04-17 08:29:48,241 basehttp 10080 6736 "GET /reporting/edit/master/ HTTP/1.1" 200 9492
+INFO 2022-04-17 08:32:25,089 autoreload 9868 1844 Watching for file changes with StatReloader
+INFO 2022-04-17 08:32:33,678 basehttp 9868 4084 "GET / HTTP/1.1" 200 7921
+INFO 2022-04-17 08:32:34,117 basehttp 9868 4084 - Broken pipe from ('127.0.0.1', 62235)
+
+INFO 2022-04-17 08:32:37,537 basehttp 9868 8332 "GET /reporting/edit/master/ HTTP/1.1" 200 9492
+INFO 2022-04-17 08:32:40,595 basehttp 9868 8332 "GET /accounts/logout/ HTTP/1.1" 302 0
+INFO 2022-04-17 08:32:40,623 basehttp 9868 8332 "GET / HTTP/1.1" 200 6583
+INFO 2022-04-17 08:32:42,455 basehttp 9868 8332 "GET /announce/ HTTP/1.1" 200 19465
+INFO 2022-04-17 08:32:42,612 basehttp 9868 8332 - Broken pipe from ('127.0.0.1', 62258)
+
+INFO 2022-04-17 08:32:42,665 basehttp 9868 13420 - Broken pipe from ('127.0.0.1', 62269)
+

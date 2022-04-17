@@ -162,3 +162,4 @@ class Master(models.Model):
     @property
     def difference(self):
         return self.new - self.old
+
