@@ -46,11 +46,11 @@ class Client(models.Model):
     )
 
     paid = models.BooleanField(
-        default=False,
+        default=True,
     )
 
     reported = models.BooleanField(
-        default=False,
+        default=True,
     )
 
     @property
@@ -156,7 +156,7 @@ class Master(models.Model):
     )
 
     reported = models.BooleanField(
-        default=False,
+        default=True,
     )
 
     @property

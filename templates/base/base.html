@@ -117,18 +117,18 @@
                 <!-- auth icons -->
                 {% if not request.user.is_authenticated %}
                     <div class="nav-item">
-                        <a href="{% url 'login' %}" class="nav-link">
+                        <a href="{% url 'login' %}" class="nav-link"><i class="bi-box-arrow-in-right"></i>
                             <span class="d-none d-lg-inline-flex">Login</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'register' %}" class="nav-link">
+                        <a href="{% url 'register' %}" class="nav-link"><i class="bi-at"></i>
                             <span class="d-none d-lg-inline-flex">Register</span>
                         </a>
                     </div>
                 {% else %}
                     <div class="nav-item">
-                        <a href="{% url 'logout' %}" class="nav-link">
+                        <a href="{% url 'logout' %}" class="nav-link"><i class="bi-box-arrow-right"></i>
                             <span class="d-none d-lg-inline-flex">Logout</span>
                         </a>
                     </div>
