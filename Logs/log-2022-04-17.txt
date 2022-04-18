@@ -43,3 +43,7 @@ INFO 2022-04-17 08:32:42,612 basehttp 9868 8332 - Broken pipe from ('127.0.0.1',
 
 INFO 2022-04-17 08:32:42,665 basehttp 9868 13420 - Broken pipe from ('127.0.0.1', 62269)
 
+INFO 2022-04-17 08:48:47,724 autoreload 11392 4344 Watching for file changes with StatReloader
+INFO 2022-04-17 08:48:53,929 basehttp 11392 9116 "GET / HTTP/1.1" 200 6586
+INFO 2022-04-17 08:48:56,718 basehttp 11392 9116 "GET /auth/login/ HTTP/1.1" 200 7592
+INFO 2022-04-17 08:48:58,111 basehttp 11392 9116 "GET /announce/ HTTP/1.1" 200 19468

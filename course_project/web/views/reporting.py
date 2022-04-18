@@ -135,10 +135,13 @@ class EditMasterView(PermissionRequiredMixin, views.UpdateView):
 
 
 def add_archive(request):
+    MAXIMUM_ARCHIVES = 12
     if not request.user.has_perm('web.add_archive',):
         return redirect('403')
     data = list(Client.objects.all())
     taxes = list(Taxes.objects.all())
+    if Archive.objects.count() == MAXIMUM_ARCHIVES:
+        Archive.objects.last().delete()
     new_archive = Archive()
     new_archive.data = serializers.serialize('json', data)
     new_archive.taxes = serializers.serialize('json', taxes)
